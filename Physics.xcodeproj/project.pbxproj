@@ -1,0 +1,344 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		EA35B42A1BE31CBB00C7807B /* YDisplacementViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA35B4291BE31CBB00C7807B /* YDisplacementViewController.swift */; };
+		EA35B42C1BE31CE200C7807B /* XDisplacementViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA35B42B1BE31CE200C7807B /* XDisplacementViewController.swift */; };
+		EA6072241BE1DCA200DA0623 /* AngleDisplacementController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA6072231BE1DCA200DA0623 /* AngleDisplacementController.swift */; };
+		EA6528091BEBDB8D00B1A07D /* howDisplayController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA6528081BEBDB8D00B1A07D /* howDisplayController.swift */; };
+		EA717B4B1BEED17000D62D1F /* howDisplacementAngleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA717B4A1BEED17000D62D1F /* howDisplacementAngleViewController.swift */; };
+		EAA0DCB01BE5811C0010A398 /* CustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAA0DCAF1BE5811C0010A398 /* CustomTableViewCell.swift */; };
+		EAAB82CE1BE0804200B979C8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAAB82CD1BE0804200B979C8 /* AppDelegate.swift */; };
+		EAAB82D31BE0804200B979C8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EAAB82D11BE0804200B979C8 /* Main.storyboard */; };
+		EAAB82D51BE0804200B979C8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EAAB82D41BE0804200B979C8 /* Assets.xcassets */; };
+		EAAB82D81BE0804200B979C8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EAAB82D61BE0804200B979C8 /* LaunchScreen.storyboard */; };
+		EAB7E5CC1BE1968500C24E82 /* EquationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAB7E5CB1BE1968500C24E82 /* EquationsViewController.swift */; };
+		EAB7E5CE1BE1970200C24E82 /* Physics.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAB7E5CD1BE1970200C24E82 /* Physics.swift */; };
+		EACF042D1BEDBD4E005149D6 /* DisplacementsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EACF042C1BEDBD4E005149D6 /* DisplacementsViewController.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		EAD2A4B61BE514D2008E15DB /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		EA35B4291BE31CBB00C7807B /* YDisplacementViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YDisplacementViewController.swift; sourceTree = "<group>"; };
+		EA35B42B1BE31CE200C7807B /* XDisplacementViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XDisplacementViewController.swift; sourceTree = "<group>"; };
+		EA6072231BE1DCA200DA0623 /* AngleDisplacementController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AngleDisplacementController.swift; sourceTree = "<group>"; };
+		EA6528081BEBDB8D00B1A07D /* howDisplayController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = howDisplayController.swift; sourceTree = "<group>"; };
+		EA717B4A1BEED17000D62D1F /* howDisplacementAngleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = howDisplacementAngleViewController.swift; sourceTree = "<group>"; };
+		EAA0DCAF1BE5811C0010A398 /* CustomTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTableViewCell.swift; sourceTree = "<group>"; };
+		EAAB82CA1BE0804200B979C8 /* Physics.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Physics.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		EAAB82CD1BE0804200B979C8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		EAAB82D21BE0804200B979C8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		EAAB82D41BE0804200B979C8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		EAAB82D71BE0804200B979C8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		EAAB82D91BE0804200B979C8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EAB7E5CB1BE1968500C24E82 /* EquationsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EquationsViewController.swift; path = ../EquationsViewController.swift; sourceTree = "<group>"; };
+		EAB7E5CD1BE1970200C24E82 /* Physics.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Physics.swift; sourceTree = "<group>"; };
+		EACF042C1BEDBD4E005149D6 /* DisplacementsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DisplacementsViewController.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		EAAB82C71BE0804200B979C8 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		EAAB82C11BE0804200B979C8 = {
+			isa = PBXGroup;
+			children = (
+				EAAB82CC1BE0804200B979C8 /* Physics */,
+				EAAB82CB1BE0804200B979C8 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		EAAB82CB1BE0804200B979C8 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				EAAB82CA1BE0804200B979C8 /* Physics.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		EAAB82CC1BE0804200B979C8 /* Physics */ = {
+			isa = PBXGroup;
+			children = (
+				EAAB82CD1BE0804200B979C8 /* AppDelegate.swift */,
+				EAB7E5CB1BE1968500C24E82 /* EquationsViewController.swift */,
+				EAA0DCAF1BE5811C0010A398 /* CustomTableViewCell.swift */,
+				EA35B4291BE31CBB00C7807B /* YDisplacementViewController.swift */,
+				EA35B42B1BE31CE200C7807B /* XDisplacementViewController.swift */,
+				EACF042C1BEDBD4E005149D6 /* DisplacementsViewController.swift */,
+				EA6072231BE1DCA200DA0623 /* AngleDisplacementController.swift */,
+				EA6528081BEBDB8D00B1A07D /* howDisplayController.swift */,
+				EA717B4A1BEED17000D62D1F /* howDisplacementAngleViewController.swift */,
+				EAAB82D11BE0804200B979C8 /* Main.storyboard */,
+				EAB7E5CD1BE1970200C24E82 /* Physics.swift */,
+				EAAB82D41BE0804200B979C8 /* Assets.xcassets */,
+				EAAB82D61BE0804200B979C8 /* LaunchScreen.storyboard */,
+				EAAB82D91BE0804200B979C8 /* Info.plist */,
+			);
+			path = Physics;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		EAAB82C91BE0804200B979C8 /* Physics */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EAAB82DC1BE0804200B979C8 /* Build configuration list for PBXNativeTarget "Physics" */;
+			buildPhases = (
+				EAAB82C61BE0804200B979C8 /* Sources */,
+				EAAB82C71BE0804200B979C8 /* Frameworks */,
+				EAAB82C81BE0804200B979C8 /* Resources */,
+				EAD2A4B61BE514D2008E15DB /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Physics;
+			productName = Physics;
+			productReference = EAAB82CA1BE0804200B979C8 /* Physics.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		EAAB82C21BE0804200B979C8 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0700;
+				ORGANIZATIONNAME = "Calvin Schofield";
+				TargetAttributes = {
+					EAAB82C91BE0804200B979C8 = {
+						CreatedOnToolsVersion = 7.0.1;
+						DevelopmentTeam = T78BF9WAAS;
+					};
+				};
+			};
+			buildConfigurationList = EAAB82C51BE0804200B979C8 /* Build configuration list for PBXProject "Physics" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = EAAB82C11BE0804200B979C8;
+			productRefGroup = EAAB82CB1BE0804200B979C8 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				EAAB82C91BE0804200B979C8 /* Physics */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		EAAB82C81BE0804200B979C8 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EAAB82D81BE0804200B979C8 /* LaunchScreen.storyboard in Resources */,
+				EAAB82D51BE0804200B979C8 /* Assets.xcassets in Resources */,
+				EAAB82D31BE0804200B979C8 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		EAAB82C61BE0804200B979C8 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EA717B4B1BEED17000D62D1F /* howDisplacementAngleViewController.swift in Sources */,
+				EA6072241BE1DCA200DA0623 /* AngleDisplacementController.swift in Sources */,
+				EAB7E5CC1BE1968500C24E82 /* EquationsViewController.swift in Sources */,
+				EAA0DCB01BE5811C0010A398 /* CustomTableViewCell.swift in Sources */,
+				EA35B42C1BE31CE200C7807B /* XDisplacementViewController.swift in Sources */,
+				EAAB82CE1BE0804200B979C8 /* AppDelegate.swift in Sources */,
+				EACF042D1BEDBD4E005149D6 /* DisplacementsViewController.swift in Sources */,
+				EA6528091BEBDB8D00B1A07D /* howDisplayController.swift in Sources */,
+				EAB7E5CE1BE1970200C24E82 /* Physics.swift in Sources */,
+				EA35B42A1BE31CBB00C7807B /* YDisplacementViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		EAAB82D11BE0804200B979C8 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				EAAB82D21BE0804200B979C8 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		EAAB82D61BE0804200B979C8 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				EAAB82D71BE0804200B979C8 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		EAAB82DA1BE0804200B979C8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		EAAB82DB1BE0804200B979C8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		EAAB82DD1BE0804200B979C8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				INFOPLIST_FILE = Physics/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.calvinSchofield.Physics;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		EAAB82DE1BE0804200B979C8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				INFOPLIST_FILE = Physics/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.calvinSchofield.Physics;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		EAAB82C51BE0804200B979C8 /* Build configuration list for PBXProject "Physics" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EAAB82DA1BE0804200B979C8 /* Debug */,
+				EAAB82DB1BE0804200B979C8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		EAAB82DC1BE0804200B979C8 /* Build configuration list for PBXNativeTarget "Physics" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EAAB82DD1BE0804200B979C8 /* Debug */,
+				EAAB82DE1BE0804200B979C8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = EAAB82C21BE0804200B979C8 /* Project object */;
+}
