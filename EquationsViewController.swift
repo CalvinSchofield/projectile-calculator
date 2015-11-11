@@ -11,15 +11,6 @@ import UIKit
 class EquationsViewController: UITableViewController {
     
     
-    
-    
-    //Test to see if it automattically updates
-    
-    
-    
-    
-    
-    
     var titleLabelData = ["Displacement", "Final Velocity", "Velocity Squared", "Average Velocity"]
     
     override func viewDidLoad() {
