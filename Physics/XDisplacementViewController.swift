@@ -121,15 +121,15 @@ class XDisplacementViewController: UIViewController, UITextFieldDelegate {
                     
                         if angle == 180 || angle == 270 {
                         
-//                            let defaultAlert = UIAlertController(title: "Quick Note", message: "It's impossible to have a Horizantal Displacement if the angle is \(angle) and there is no Vertical Displacement. Your looking for the Displacements tab.", preferredStyle: .Alert)
-//                            
-//                            let cancelAction = UIAlertAction(title: "Ok", style: .Default) {(action: UIAlertAction) in
-//                                
-//                            }
-//                            
-//                            defaultAlert.addAction(cancelAction)
-//                            
-//                            self.presentViewController(defaultAlert, animated: true, completion: nil)
+                            let defaultAlert = UIAlertController(title: "Quick Note", message: "It's impossible to have a Horizantal Displacement if the angle is \(angle) and there is no Vertical Displacement. Your looking for the Displacements tab.", preferredStyle: .Alert)
+                            
+                            let cancelAction = UIAlertAction(title: "Ok", style: .Default) {(action: UIAlertAction) in
+                                
+                            }
+                            
+                            defaultAlert.addAction(cancelAction)
+                            
+                            self.presentViewController(defaultAlert, animated: true, completion: nil)
                         
                         } else {
                             
