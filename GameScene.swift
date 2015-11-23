@@ -49,6 +49,9 @@ class GameScene: SKScene {
         
         if let physics = ground.physicsBody {
             
+            //Can change the coefficient of between the ground and the block. (between 0.0 and 1.0)
+            physics.friction = 0.2
+            
             physics.dynamic = false
             
             physics.affectedByGravity = false
