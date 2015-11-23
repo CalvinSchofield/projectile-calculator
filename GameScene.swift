@@ -64,7 +64,7 @@ class GameScene: SKScene {
         
         brick.fillColor = SKColor.blackColor()
         
-        brick.position = CGPoint(x: frame.width * 0.8, y: frame.height / 2)
+        brick.position = CGPoint(x: frame.width * 0.6, y: frame.height * 0.8)
         
         brick.physicsBody = SKPhysicsBody(rectangleOfSize: CGSize(width: 100, height: 50))
         
