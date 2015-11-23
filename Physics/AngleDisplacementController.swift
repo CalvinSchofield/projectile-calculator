@@ -56,19 +56,17 @@ class AngleDisplacementController: UIViewController, UITextFieldDelegate {
             
             if let angle = Double(angleTextField.text!) {
                 
-                if angle != 0.0 {
-                
-                    physics.recalculateAngleDisplacement(CGFloat(timeSliderOutlet.value), xDisplacement: CGFloat(xDisplacement), degree: CGFloat(angle))
-                
-                    displayRecalculations()
-                
-                    timeLabel.text = "Time: " + String(round(100 * timeSliderOutlet.value) / 100) + " s"
+                if angle == 0.0 {
+                    
+                    //ERROR - not enough info to solve
                 
                 } else {
-                
-                    //MARK: - Error : Not Enough Information to Solve.
                     
-                    print("Error")
+                    physics.recalculateAngleDisplacement(CGFloat(timeSliderOutlet.value), xDisplacement: CGFloat(xDisplacement), degree: CGFloat(angle))
+                    
+                    displayRecalculations()
+                    
+                    timeLabel.text = "Time: " + String(round(100 * timeSliderOutlet.value) / 100) + " s"
                     
                 }
                 
