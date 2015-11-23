@@ -17,8 +17,10 @@ class GameScene: SKScene {
         physicsWorld.gravity = CGVectorMake(0, -9.8)
         
         
+        //Angle could be selected by a UISlider that goes from 0 to 90 degrees. At 90 degrees, the incline will dissapear
         let angle = CGFloat(20)
         
+        //The mass could be determined by a text field
         let mass = CGFloat(20.2)
         
         setup(((angle * CGFloat(M_PI)) / 180.0), mass: mass)
