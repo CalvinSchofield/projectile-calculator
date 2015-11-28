@@ -20,7 +20,6 @@
 		EAB7E5CC1BE1968500C24E82 /* EquationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAB7E5CB1BE1968500C24E82 /* EquationsViewController.swift */; };
 		EAB7E5CE1BE1970200C24E82 /* Physics.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAB7E5CD1BE1970200C24E82 /* Physics.swift */; };
 		EABB63F41C05435C0066E1E2 /* SpriteKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EABB63F31C05435C0066E1E2 /* SpriteKit.framework */; };
-		EABB63F61C0545DC0066E1E2 /* SectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EABB63F51C0545DC0066E1E2 /* SectionViewController.swift */; };
 		EACF042D1BEDBD4E005149D6 /* DisplacementsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EACF042C1BEDBD4E005149D6 /* DisplacementsViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -53,7 +52,6 @@
 		EAB7E5CB1BE1968500C24E82 /* EquationsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EquationsViewController.swift; path = ../EquationsViewController.swift; sourceTree = "<group>"; };
 		EAB7E5CD1BE1970200C24E82 /* Physics.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Physics.swift; sourceTree = "<group>"; };
 		EABB63F31C05435C0066E1E2 /* SpriteKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SpriteKit.framework; path = System/Library/Frameworks/SpriteKit.framework; sourceTree = SDKROOT; };
-		EABB63F51C0545DC0066E1E2 /* SectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SectionViewController.swift; sourceTree = "<group>"; };
 		EACF042C1BEDBD4E005149D6 /* DisplacementsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DisplacementsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -90,7 +88,6 @@
 			isa = PBXGroup;
 			children = (
 				EAAB82CD1BE0804200B979C8 /* AppDelegate.swift */,
-				EABB63F51C0545DC0066E1E2 /* SectionViewController.swift */,
 				EAB7E5CB1BE1968500C24E82 /* EquationsViewController.swift */,
 				EAA0DCAF1BE5811C0010A398 /* CustomTableViewCell.swift */,
 				EA35B4291BE31CBB00C7807B /* YDisplacementViewController.swift */,
@@ -180,7 +177,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EABB63F61C0545DC0066E1E2 /* SectionViewController.swift in Sources */,
 				EA717B4B1BEED17000D62D1F /* howDisplacementAngleViewController.swift in Sources */,
 				EA6072241BE1DCA200DA0623 /* AngleDisplacementController.swift in Sources */,
 				EAB7E5CC1BE1968500C24E82 /* EquationsViewController.swift in Sources */,
