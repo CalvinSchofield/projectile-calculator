@@ -98,7 +98,7 @@ class howDisplayController: UIViewController {
             
             if physics.yDisplacement! == 0 {
                 
-                graphImage.image = UIImage(named: "noYDisplacement")
+                graphImage.image = UIImage(named: "noDisplacementGraph")
                 
                 noAngleMaxHeight.text = ""
                 
@@ -112,7 +112,7 @@ class howDisplayController: UIViewController {
                 
                 if physics.degrees == 0 && physics.yInitialVelovity! == 0 {
                  
-                    graphImage.image = UIImage(named: "noAngle")
+                    graphImage.image = UIImage(named: "noAngleGraph")
                     
                     noAngleMaxHeight.text = String(round(100 * physics.MaxHeight!) / 100) + " m"
                     
@@ -120,11 +120,11 @@ class howDisplayController: UIViewController {
                     
                     noYDisplacementMaxHeight.text = ""
                     
-                    yDisplacementGraph.text = String(round(100 * physics.yDisplacement!) / 100) + " m"
+                    yDisplacementGraph.text = ""
                     
                 } else {
                     
-                    graphImage.image = UIImage(named: "yDisplacement")
+                    graphImage.image = UIImage(named: "yDisplacementGraph")
                     
                     noAngleMaxHeight.text = ""
                     
