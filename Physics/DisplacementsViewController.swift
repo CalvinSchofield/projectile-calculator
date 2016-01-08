@@ -151,14 +151,6 @@ class DisplacementsViewController: UIViewController, UITextFieldDelegate {
     //MARK: - Function : Displays recalculated data
     func displayRecalculations() {
         
-        initialVelocityLabel.text = "Initial Velocity: " + String(round(1000 * physics.VectorVelocity) / 1000) + " m/s"
-        
-        InitialVelocityAngleLabel.text = "Angle: " + String(round(1000 * physics.degrees) / 1000) + "º"
-        
-        finalVelocityLabel.text = "Final Velocity: " + String(round(1000 * physics.finalVectorVelocity) / 1000) + " m/s"
-        
-        finalVelocityAngleLabel.text = "Angle of Final Velocity Vector: " + String(round(1000 * physics.finalDegrees) / 1000) + "º"
-        
         timeLabel.text = "Time: " + String(round(1000 * physics.time!) / 1000) + " sec"
         
         verticalInitialVelocityLabel.text = "Vertical Velocity: " + String(round(1000 * physics.yInitialVelovity!) / 1000) + " m/s"
