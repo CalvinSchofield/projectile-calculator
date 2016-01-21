@@ -14,6 +14,8 @@ class AngleDisplacementController: UIViewController, UITextFieldDelegate {
     //MARK: - variables
     var physics = Physics()
     
+    var currentUnit : Units = .InternationalSystem
+    
     
     //MARK: - IBActions / IBOutlets
     @IBOutlet weak var scrollView: UIScrollView!
@@ -62,7 +64,7 @@ class AngleDisplacementController: UIViewController, UITextFieldDelegate {
                 
                 } else {
                     
-                    physics.recalculateAngleDisplacement(CGFloat(timeSliderOutlet.value), xDisplacement: CGFloat(xDisplacement), degree: CGFloat(angle))
+                    physics.recalculateAngleDisplacement(CGFloat(timeSliderOutlet.value), xDisplacement: CGFloat(xDisplacement), degree: CGFloat(angle), currentUnit: currentUnit)
                     
                     displayRecalculations()
                     
@@ -111,7 +113,7 @@ class AngleDisplacementController: UIViewController, UITextFieldDelegate {
                 
                 if angle != 0.0 {
                 
-                    physics = Physics(xDisplacement: CGFloat(xDisplacement), degree: CGFloat(angle))
+                    physics = Physics(xDisplacement: CGFloat(xDisplacement), degree: CGFloat(angle), currentUnits: currentUnit)
                 
                     displayData()
                 
@@ -133,29 +135,17 @@ class AngleDisplacementController: UIViewController, UITextFieldDelegate {
     //MARK: - function : display data
     func displayData() {
         
-        initialVelocityLabel.text = "Initial Vlelocity: " + String(round(1000 * physics.VectorVelocity) / 1000) + " m/s"
-        
-        initialAngleLabel.text = "Angle of Initial Velocity Vector: " + String(round(1000 * physics.degrees) / 1000) + "º"
-        
-        finalVelocityLabel.text = "Final Velocity: " + String(round(1000 * physics.finalVectorVelocity) / 1000) + " m/s"
-        
-        finalVelocityAngleLabel.text = "Angle of Final Velocity Vector: " + String(round(1000 * physics.finalDegrees) / 1000) + "º"
-        
-        timeLabel.text = "Time: " + String(round(1000 * physics.time!) / 1000) + " s"
-        
-        maxHeightLabel.text = "Max Height: " + String(round(1000 * physics.MaxHeight!) / 1000) + " m at " + (String(round(1000 * physics.maxHeightTime!) / 1000)) + " sec"
-        
-        verticalVelocityLabel.text = "Vertical Velocity: " + String(round(1000 * physics.yInitialVelovity!) / 1000) + " m/sec"
-        
-        verticalDisplacementLabel.text = "Vertical Displacement: " + String(round(1000 * physics.yDisplacement!) / 1000) + " m"
-        
-        verticalFinalVelocityLabel.text = "Vertical Final Velocity: " + String(round(1000 * physics.yFinalVelocity!) / 1000) + " m/s"
-        
-        horizantalVelocityLabel.text = "Horizantal Velocity: " + String(round(1000 * physics.xInitialVelocity!) / 1000) + " m/s"
-        
-        horizantalDisplacementLabel.text = "Horizantal Displacement: " + String(round(1000 * physics.xDisplacement!) / 1000) + " m"
-        
-        horizantalFinalVelocityLabel.text = "Horizantal Final Velocity: " + String(round(1000 * physics.xFinalVelocity!) / 1000) + " m/s"
+        switch physics.currentUnits {
+            
+        case .InternationalSystem:
+            
+            displayInternational()
+            
+        case .MetricSystem:
+            
+            displayMetric()
+            
+        }
         
         totalTimeLabel.text = String(round(1000 * physics.time!) / 1000) + " sec"
         
@@ -169,17 +159,41 @@ class AngleDisplacementController: UIViewController, UITextFieldDelegate {
     //MARK: - Function : Displays recalculated data
     func displayRecalculations() {
         
-        initialVelocityLabel.text = "Initial Vlelocity: " + String(round(1000 * physics.VectorVelocity) / 1000) + " m/s"
+        switch physics.currentUnits {
+            
+        case .InternationalSystem:
+            
+            displayInternational()
+            
+        case .MetricSystem:
+            
+            displayMetric()
+            
+        }
         
-        initialAngleLabel.text = "Angle of Initial Velocity Vector: " + String(round(1000 * physics.degrees) / 1000) + "º"
+        totalTimeLabel.text = String(round(1000 * physics.time!) / 1000) + " sec"
+        
+        timeSliderOutlet.maximumValue = abs(Float(physics.time!))
+        
+        timeSliderOutlet.minimumValue = 0
+        
+    }
+    
+    func displayInternational() {
+        
+        initialVelocityLabel.text = "Initial Velocity: " + String(round(1000 * physics.VectorVelocity) / 1000) + " m/s"
+        
+        initialAngleLabel.text = "Angle: " + String(round(1000 * physics.degrees) / 1000) + "º"
         
         finalVelocityLabel.text = "Final Velocity: " + String(round(1000 * physics.finalVectorVelocity) / 1000) + " m/s"
         
         finalVelocityAngleLabel.text = "Angle of Final Velocity Vector: " + String(round(1000 * physics.finalDegrees) / 1000) + "º"
         
-        timeLabel.text = "Time: " + String(round(1000 * physics.time!) / 1000) + " s"
-                
-        verticalVelocityLabel.text = "Vertical Velocity: " + String(round(1000 * physics.yInitialVelovity!) / 1000) + " m/sec"
+        timeLabel.text = "Time: " + String(round(1000 * physics.time!) / 1000) + " sec"
+        
+        maxHeightLabel.text = "Max Height: " + String(round(1000 * physics.yMaxHeight!) / 1000) + " m  at " + String(round(1000 * physics.maxHeightTime!) / 1000) + " sec"
+        
+        verticalVelocityLabel.text = "Vertical Velocity: " + String(round(1000 * physics.yInitialVelovity!) / 1000) + " m/s"
         
         verticalDisplacementLabel.text = "Vertical Displacement: " + String(round(1000 * physics.yDisplacement!) / 1000) + " m"
         
@@ -191,11 +205,34 @@ class AngleDisplacementController: UIViewController, UITextFieldDelegate {
         
         horizantalFinalVelocityLabel.text = "Horizantal Final Velocity: " + String(round(1000 * physics.xFinalVelocity!) / 1000) + " m/s"
         
-        totalTimeLabel.text = String(round(1000 * physics.time!) / 1000) + " sec"
+    }
+    
+    
+    func displayMetric() {
         
-        timeSliderOutlet.maximumValue = abs(Float(physics.time!))
+        initialVelocityLabel.text = "Initial Velocity: " + String(round(1000 * physics.VectorVelocity) / 1000) + " ft/s"
         
-        timeSliderOutlet.minimumValue = 0
+        initialAngleLabel.text = "Angle: " + String(round(1000 * physics.degrees) / 1000) + "º"
+        
+        finalVelocityLabel.text = "Final Velocity: " + String(round(1000 * physics.finalVectorVelocity) / 1000) + " ft/s"
+        
+        finalVelocityAngleLabel.text = "Angle of Final Velocity Vector: " + String(round(1000 * physics.finalDegrees) / 1000) + "º"
+        
+        timeLabel.text = "Time: " + String(round(1000 * physics.time!) / 1000) + " sec"
+        
+        maxHeightLabel.text = "Max Height: " + String(round(1000 * physics.yMaxHeight!) / 1000) + " ft  at " + String(round(1000 * physics.maxHeightTime!) / 1000) + " sec"
+        
+        verticalVelocityLabel.text = "Vertical Velocity: " + String(round(1000 * physics.yInitialVelovity!) / 1000) + " ft/s"
+        
+        verticalDisplacementLabel.text = "Vertical Displacement: " + String(round(1000 * physics.yDisplacement!) / 1000) + " ft"
+        
+        verticalFinalVelocityLabel.text = "Vertical Final Velocity: " + String(round(1000 * physics.yFinalVelocity!) / 1000) + " ft/s"
+        
+        horizantalVelocityLabel.text = "Horizantal Velocity: " + String(round(1000 * physics.xInitialVelocity!) / 1000) + " ft/s"
+        
+        horizantalDisplacementLabel.text = "Horizantal Displacement: " + String(round(1000 * physics.xDisplacement!) / 1000) + " ft"
+        
+        horizantalFinalVelocityLabel.text = "Horizantal Final Velocity: " + String(round(1000 * physics.xFinalVelocity!) / 1000) + " ft/s"
         
     }
     

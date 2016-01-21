@@ -13,6 +13,8 @@ class EquationsViewController: UITableViewController {
     
     var titleLabelData = ["Displacement", "Final Velocity", "Velocity Squared", "Average Velocity"]
     
+    var selectedIndex = Int()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -74,15 +76,32 @@ class EquationsViewController: UITableViewController {
         return true
     }
     */
+    
+    
+    override func tableView(tableView: UITableView, willSelectRowAtIndexPath indexPath: NSIndexPath) -> NSIndexPath? {
+        
+        selectedIndex = indexPath.row
+        
+        return indexPath
+        
+    }
 
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
+        
+        if segue.identifier == "detailedExplanation" {
+            
+            let destinationViewController : EquationsExplanationsViewController = segue.destinationViewController as! EquationsExplanationsViewController
+            
+            destinationViewController.index = selectedIndex
+                        
+        }
+        
     }
-    */
 
 }

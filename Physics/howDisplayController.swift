@@ -66,7 +66,7 @@ class howDisplayController: UIViewController {
     //MARK: - Function : set up ViewController
     func setUp() {
         
-        if physics.MaxHeight != nil {
+        if physics.yMaxHeight != nil {
             
             timeExplanation = [
                 "1: Find Time\n\t\tFirst step always is to solve for time. Once you have time, you can find anything else. Since you know all the necessary vertical components to find time, set up the formula\n\t\tdisplacement = initial velocity * time + (acceleration * time^2) / 2\n\t\tIn the equation - displacement equals your vertical displacement, initial velocity equals the Vertical Component of the initial velocity, and the acceleration equals the acceleration of the y-axis (gravity : -9.8 m/s^2). In this case:\n\t\t\(round(100 * (physics.yDisplacement!) / 100)) = \(round(100 * (physics.yInitialVelovity!) / 100)) * time + (\(physics.yAcceleration!) * (time^2)) / 2\n\t\tIn the end, time equals \(round(100 * physics.time!) / 100) seconds",
@@ -87,8 +87,8 @@ class howDisplayController: UIViewController {
                 "3: Find Max Height\n\t\tSolving for max height is easy if you visualize the projectile. Max height will be at exactly one half of the total time WHEN the projectile starts and ends at ground level. If the displacement is greater than 0 (think shooting something of of a cliff), we will need to find time when the Vertical Displacement is equal to 0\n\n\t\tdisplacement = initial velocity * time + (acceleration * (time * time)) / 2)\n\n\t\tAgain, pluggin in all the Vertical known components, except this time, set the displacement equal to 0 no matter what.\n\n\t\t0 = \(round(100 * (physics.yInitialVelovity!) / 100)) * \(round(100 * (physics.time!) / 100)) + (\((physics.yAcceleration!)) * (\(round(100 * (physics.time!) / 100)) * \(round(100 * (physics.time!) / 100)))\n\t\tAfter that, we find that our time equals \(round(100 * physics.maxHeightTime!) / 100)",
                 "Temporary Text"]
             
-            maxHeightExplanation = ["3-B: Finding Max Height\n\t\tWith this time at 0 Vertical displacement, we can use the same equation while plugging in exactly one-half of time to find the max height of the parabola.\n\t\tWhen doing this, we get\n\t\tMax Height = \(round(100 * (physics.yInitialVelovity!) / 100)) / 2 * \(round(1000 * (physics.time!) / 1000)) + (\(physics.yAcceleration!) * (\(round(1000 * (physics.time!) / 1000)) / 2 * \(round(100 * (physics.time!) / 100)) / 2) / 2\n\t\tWe find that the Max Height equals \(round(100 * physics.MaxHeight!) / 100)",
-                "With this time at 0 Vertical displacement, we can use the same equation while plugging in exactly one-half of time to find the max height of the parabola.\n\t\tWhen doing this, we get\n\t\tMax Height = \(round(100 * (physics.yInitialVelovity!) / 100)) * \(round(1000 * (physics.time!) / 1000)) / 2 + (\(physics.yAcceleration!) * (\(round(1000 * (physics.time!) / 1000)) / 2 * \(round(100 * (physics.time!) / 100)) / 2) / 2\n\t\tWe find that the Max Height equals \(round(100 * physics.MaxHeight!) / 100)",
+            maxHeightExplanation = ["3-B: Finding Max Height\n\t\tWith this time at 0 Vertical displacement, we can use the same equation while plugging in exactly one-half of time to find the max height of the parabola.\n\t\tWhen doing this, we get\n\t\tMax Height = \(round(100 * (physics.yInitialVelovity!) / 100)) / 2 * \(round(1000 * (physics.time!) / 1000)) + (\(physics.yAcceleration!) * (\(round(1000 * (physics.time!) / 1000)) / 2 * \(round(100 * (physics.time!) / 100)) / 2) / 2\n\t\tWe find that the Max Height equals \(round(100 * physics.yMaxHeight!) / 100)",
+                "With this time at 0 Vertical displacement, we can use the same equation while plugging in exactly one-half of time to find the max height of the parabola.\n\t\tWhen doing this, we get\n\t\tMax Height = \(round(100 * (physics.yInitialVelovity!) / 100)) * \(round(1000 * (physics.time!) / 1000)) / 2 + (\(physics.yAcceleration!) * (\(round(1000 * (physics.time!) / 1000)) / 2 * \(round(100 * (physics.time!) / 100)) / 2) / 2\n\t\tWe find that the Max Height equals \(round(100 * physics.yMaxHeight!) / 100)",
                 "Temporary Text"]
             
             maxHeightTimeLabel.text = maxHeightTimeExplanation[identity]
@@ -104,7 +104,7 @@ class howDisplayController: UIViewController {
                 
                 yDisplacementMaxHeight.text = ""
                 
-                noYDisplacementMaxHeight.text = String(round(100 * physics.MaxHeight!) / 100) + " m"
+                noYDisplacementMaxHeight.text = String(round(100 * physics.yMaxHeight!) / 100) + " m"
                 
                 yDisplacementGraph.text = ""
                 
@@ -114,7 +114,7 @@ class howDisplayController: UIViewController {
                  
                     graphImage.image = UIImage(named: "noAngleGraph")
                     
-                    noAngleMaxHeight.text = String(round(100 * physics.MaxHeight!) / 100) + " m"
+                    noAngleMaxHeight.text = String(round(100 * physics.yMaxHeight!) / 100) + " m"
                     
                     yDisplacementMaxHeight.text = ""
                     
@@ -128,7 +128,7 @@ class howDisplayController: UIViewController {
                     
                     noAngleMaxHeight.text = ""
                     
-                    yDisplacementMaxHeight.text = String(round(100 * physics.MaxHeight!) / 100) + " m"
+                    yDisplacementMaxHeight.text = String(round(100 * physics.yMaxHeight!) / 100) + " m"
                     
                     noYDisplacementMaxHeight.text = ""
                     
