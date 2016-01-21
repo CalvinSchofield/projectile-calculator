@@ -240,15 +240,21 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pw5-W0-qQG">
-                                        <rect key="frame" x="271" y="333" width="86" height="30"/>
-                                        <state key="normal" title="International"/>
+                                        <rect key="frame" x="8" y="333" width="162" height="30"/>
+                                        <color key="backgroundColor" red="1" green="0.58823529411764708" blue="0.58823529411764708" alpha="1" colorSpace="calibratedRGB"/>
+                                        <state key="normal" title="International">
+                                            <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
                                         <connections>
                                             <action selector="internationalButton:" destination="LsE-vn-LbB" eventType="touchUpInside" id="LBB-UG-TPe"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nDh-p9-Rpg">
-                                        <rect key="frame" x="41" y="333" width="44" height="30"/>
-                                        <state key="normal" title="Metric"/>
+                                        <rect key="frame" x="205" y="333" width="162" height="30"/>
+                                        <color key="backgroundColor" red="0.58823529411764708" green="0.58823529411764708" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <state key="normal" title="Metric">
+                                            <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
                                         <connections>
                                             <action selector="metricButton:" destination="LsE-vn-LbB" eventType="touchUpInside" id="pv5-fr-D92"/>
                                         </connections>
@@ -349,7 +355,9 @@
                         <outlet property="horizantalVelocityLabel" destination="fM3-4f-9oG" id="ABX-zr-Ljc"/>
                         <outlet property="initialVelocityLabel" destination="vKF-Le-Pam" id="Eeu-Ki-rMQ"/>
                         <outlet property="initialVelocityTextField" destination="Arw-Ar-A5K" id="f5a-6z-axI"/>
+                        <outlet property="internationalButtonOutlet" destination="pw5-W0-qQG" id="yZh-Gl-8mJ"/>
                         <outlet property="maxHeightLabel" destination="p3J-67-z7f" id="EbL-7R-0ne"/>
+                        <outlet property="metricButtonOutlet" destination="nDh-p9-Rpg" id="w1H-rF-Ik9"/>
                         <outlet property="scrollView" destination="hSl-dB-0yC" id="nbO-QV-Gfc"/>
                         <outlet property="timeLabel" destination="i5u-U5-C1B" id="l0h-YC-S6g"/>
                         <outlet property="timeSliderOutlet" destination="mqr-RG-R0I" id="glA-Nh-NjX"/>
@@ -1768,6 +1776,6 @@
         <image name="velocitySquared" width="170" height="60"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="XAJ-6a-wX8"/>
+        <segue reference="DXJ-tB-sxv"/>
     </inferredMetricsTieBreakers>
 </document>

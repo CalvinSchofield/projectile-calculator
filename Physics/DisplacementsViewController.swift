@@ -56,11 +56,19 @@ class DisplacementsViewController: UIViewController, UITextFieldDelegate {
             
             if let xDisplacement = Double(xDisplacementTextField.text!) {
                 
-                    physics.recalculateDisplacements(CGFloat(timeSlider.value), degree: 0, xDisplacement: CGFloat(xDisplacement), yDisplacement: CGFloat(yDisplacement), currentUnit: currentUnit)
+                physics.recalculateDisplacements(CGFloat(timeSlider.value), degree: 0, xDisplacement: CGFloat(xDisplacement), yDisplacement: CGFloat(yDisplacement), currentUnit: currentUnit)
+                
+                if physics.canBeSolved {
+                
+                        displayRecalculations()
+                        
+                        sliderTimeLabel.text = String(round(100 * timeSlider.value) / 100) + " sec"
                     
-                    displayRecalculations()
+                } else {
                     
-                    sliderTimeLabel.text = String(round(100 * timeSlider.value) / 100) + " sec"
+                    print("Error - or something went wrong")
+                    
+                }
                 
             }
                 
@@ -102,10 +110,18 @@ class DisplacementsViewController: UIViewController, UITextFieldDelegate {
             if let xDisplacement = Double(xDisplacementTextField.text!) {
                         
                     physics = Physics(degree: 0, xDisplacement: CGFloat(xDisplacement), yDisplacement: CGFloat(yDisplacement), currentUnits: currentUnit)
-                        
-                    displayData()
-                        
-                    timeSlider.value = Float(physics.time!)
+                
+                if physics.canBeSolved {
+                
+                        displayData()
+                            
+                        timeSlider.value = Float(physics.time!)
+                    
+                } else {
+                    
+                    print("Error - or something went wrong")
+                    
+                }
                 
             }
             

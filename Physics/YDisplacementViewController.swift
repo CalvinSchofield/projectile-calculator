@@ -50,11 +50,19 @@ class YDisplacementViewController: UIViewController, UITextFieldDelegate {
         
     @IBOutlet weak var horizantalFinalVelocityLabel: UILabel!
     
+    @IBOutlet weak var metricButtonOutlet: UIButton!
+    
+    @IBOutlet weak var internationalButtonOutlet: UIButton!
+    
     @IBAction func metricButton(sender: AnyObject) {
     
         currentUnit = .MetricSystem
         
         physics.currentUnits  = currentUnit
+        
+        metricButtonOutlet.backgroundColor = UIColor(red: 255/255, green: 150/255, blue: 150/255, alpha: 1.0)
+        
+        internationalButtonOutlet.backgroundColor = UIColor(red: 150/255, green: 150/255, blue: 255/255, alpha: 1.0)
         
     }
     
@@ -63,7 +71,11 @@ class YDisplacementViewController: UIViewController, UITextFieldDelegate {
         currentUnit = .InternationalSystem
         
         physics.currentUnits = currentUnit
-                
+        
+        internationalButtonOutlet.backgroundColor = UIColor(red: 255/255, green: 150/255, blue: 150/255, alpha: 1.0)
+        
+        metricButtonOutlet.backgroundColor = UIColor(red: 150/255, green: 150/255, blue: 255/255, alpha: 1.0)
+        
     }
     
     @IBOutlet weak var totalTimeLabel: UILabel!
@@ -80,9 +92,17 @@ class YDisplacementViewController: UIViewController, UITextFieldDelegate {
                     
                     physics.recalculateYDisplacement(CGFloat(timeSliderOutlet.value), VectorVelocity: CGFloat(initialVelocity), degree: CGFloat(angle), yDisplacement: CGFloat(yDisplacement), currentUnit: currentUnit)
                     
-                    displayRecalculations()
+                    if physics.canBeSolved {
                     
-                    timeLabel.text = "Time: " + String(round(100 * timeSliderOutlet.value) / 100) + " s"
+                        displayRecalculations()
+                    
+                        timeLabel.text = "Time: " + String(round(100 * timeSliderOutlet.value) / 100) + " s"
+                        
+                    } else {
+                        
+                        print("Error - or something went wrong")
+                        
+                    }
                     
                 }
                 
@@ -129,10 +149,18 @@ class YDisplacementViewController: UIViewController, UITextFieldDelegate {
                 if let yDisplacement = Double(yDisplacementTextField.text!) {
                     
                     physics = Physics(VectorVelocity: CGFloat(initialVelocity), degree: CGFloat(angle), yDisplacement: CGFloat(yDisplacement), currentUnits: currentUnit)
-                                        
-                    displayData()
                     
-                    timeSliderOutlet.value = Float(physics.time!)
+                    if physics.canBeSolved {
+                    
+                        displayData()
+                    
+                        timeSliderOutlet.value = Float(physics.time!)
+                        
+                    } else {
+                        
+                        print("Error - not possible, or something is wrong")
+                        
+                    }
     
                     
                 }

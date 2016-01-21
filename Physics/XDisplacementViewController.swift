@@ -64,9 +64,17 @@ class XDisplacementViewController: UIViewController, UITextFieldDelegate {
                     
                     physics.recalculateXDisplacement(CGFloat(timeSliderOutlet.value), VectorVelocity: CGFloat(initialVelocity), degree: CGFloat(angle), xDisplacement: CGFloat(xDisplacement), currentUnit: currentUnit)
                     
-                    displayRecalculations()
+                    if physics.canBeSolved {
                     
-                    timeLabel.text = "Time: " + String(round(100 * timeSliderOutlet.value) / 100) + " s"
+                        displayRecalculations()
+                        
+                        timeLabel.text = "Time: " + String(round(100 * timeSliderOutlet.value) / 100) + " s"
+                    
+                    } else {
+                        
+                        print("Error - or something went wrong")
+                        
+                    }
                     
                 }
                 
@@ -113,7 +121,7 @@ class XDisplacementViewController: UIViewController, UITextFieldDelegate {
                 
                 if let xDisplacement = Double(xDisplacementTextField.text!) {
                     
-                    if (angle == 90 || angle == 180 || angle == 270 || angle == 360) && xDisplacement != 0 {
+                    if (angle == 90 || angle == 180 || angle == 270 ) && xDisplacement != 0 {
                     
                         if angle == 180 || angle == 270 {
                         
@@ -145,9 +153,17 @@ class XDisplacementViewController: UIViewController, UITextFieldDelegate {
                         
                         physics = Physics(VectorVelocity: CGFloat(initialVelocity), degree: CGFloat(angle), xDisplacement: CGFloat(xDisplacement), currentUnits: currentUnit)
                         
-                        displayData()
+                        if physics.canBeSolved {
                         
-                        timeSliderOutlet.value = Float(physics.time!)
+                            displayData()
+                        
+                            timeSliderOutlet.value = Float(physics.time!)
+                        
+                        } else {
+                            
+                            print("Error - or something went wrong")
+                            
+                        }
                         
                     }
                     

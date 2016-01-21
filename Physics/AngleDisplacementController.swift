@@ -66,9 +66,17 @@ class AngleDisplacementController: UIViewController, UITextFieldDelegate {
                     
                     physics.recalculateAngleDisplacement(CGFloat(timeSliderOutlet.value), xDisplacement: CGFloat(xDisplacement), degree: CGFloat(angle), currentUnit: currentUnit)
                     
-                    displayRecalculations()
+                    if physics.canBeSolved {
                     
-                    timeLabel.text = "Time: " + String(round(100 * timeSliderOutlet.value) / 100) + " s"
+                        displayRecalculations()
+                        
+                        timeLabel.text = "Time: " + String(round(100 * timeSliderOutlet.value) / 100) + " s"
+                    
+                    } else {
+                        
+                        print("Error - or something went wrong")
+                        
+                    }
                     
                 }
                 
@@ -115,9 +123,17 @@ class AngleDisplacementController: UIViewController, UITextFieldDelegate {
                 
                     physics = Physics(xDisplacement: CGFloat(xDisplacement), degree: CGFloat(angle), currentUnits: currentUnit)
                 
-                    displayData()
-                
-                    timeSliderOutlet.value = Float(physics.time!)
+                    if physics.canBeSolved {
+                    
+                        displayData()
+                    
+                        timeSliderOutlet.value = Float(physics.time!)
+                        
+                    } else {
+                        
+                        print("Error - or something went wrong")
+                        
+                    }
                     
                 } else {
                     

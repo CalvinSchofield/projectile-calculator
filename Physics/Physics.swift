@@ -120,13 +120,13 @@ class Physics {
             
             self.xAcceleration = 0
             
-            self.yAcceleration = -9.8
+            self.yAcceleration = -32
             
         case .InternationalSystem:
             
             self.xAcceleration = 0
             
-            self.yAcceleration = -32
+            self.yAcceleration = -9.8
             
         }
         
@@ -139,15 +139,7 @@ class Physics {
         
         findVelocity(VectorVelocity, degree: degree)
         
-        if findTime(nil, xInitialVelocity: self.xInitialVelocity!, yDisplacement: nil, xDisplacement: self.xDisplacement!, xAcceleration: self.xAcceleration!, yAcceleration: nil) == nil {
-            
-            self.canBeSolved = false
-            
-        } else {
-            
-            self.canBeSolved = true
-            
-        }
+        self.canBeSolved = checkTime(nil, xInitialVelocity: self.xInitialVelocity, yDisplacement: nil, xDisplacement: self.xDisplacement, xAcceleration: self.xAcceleration, yAcceleration: nil)
         
         self.time = findTime(nil, xInitialVelocity: self.xInitialVelocity!, yDisplacement: nil, xDisplacement: self.xDisplacement!, xAcceleration: self.xAcceleration!, yAcceleration: nil)
         
@@ -195,13 +187,13 @@ class Physics {
             
             self.xAcceleration = 0
             
-            self.yAcceleration = -9.8
+            self.yAcceleration = -32
             
         case .InternationalSystem:
             
             self.xAcceleration = 0
             
-            self.yAcceleration = -32
+            self.yAcceleration = -9.8
             
         }
         
@@ -214,15 +206,7 @@ class Physics {
         
         findVelocity(VectorVelocity, degree: degree)
         
-        if findTime(self.yInitialVelovity, xInitialVelocity: nil, yDisplacement: self.yDisplacement, xDisplacement: nil, xAcceleration: nil, yAcceleration: self.yAcceleration) == nil {
-            
-            self.canBeSolved = false
-            
-        } else {
-            
-            self.canBeSolved = true
-            
-        }
+        self.canBeSolved = checkTime(self.yInitialVelovity, xInitialVelocity: nil, yDisplacement: self.yDisplacement, xDisplacement: nil, xAcceleration: nil, yAcceleration: self.yAcceleration)
         
         self.time = findTime(self.yInitialVelovity, xInitialVelocity: nil, yDisplacement: self.yDisplacement, xDisplacement: nil, xAcceleration: nil, yAcceleration: self.yAcceleration)
         
@@ -266,13 +250,13 @@ class Physics {
             
             self.xAcceleration = 0
             
-            self.yAcceleration = -9.8
+            self.yAcceleration = -32
             
         case .InternationalSystem:
             
             self.xAcceleration = 0
             
-            self.yAcceleration = -32
+            self.yAcceleration = -9.8
             
         }
         
@@ -286,17 +270,9 @@ class Physics {
         
         findVelocity(self.VectorVelocity, degree: degree)
         
-        if findTime(self.yInitialVelovity!, xInitialVelocity: nil, yDisplacement: 0, xDisplacement: nil, xAcceleration: nil, yAcceleration: -9.8) == nil {
-            
-            self.canBeSolved = false
-            
-        } else {
-            
-            self.canBeSolved = true
-            
-        }
+        self.canBeSolved = checkTime(self.yInitialVelovity, xInitialVelocity: nil, yDisplacement: 0, xDisplacement: nil, xAcceleration: nil, yAcceleration: self.yAcceleration)
         
-        self.time = findTime(self.yInitialVelovity!, xInitialVelocity: nil, yDisplacement: 0, xDisplacement: nil, xAcceleration: nil, yAcceleration: -9.8)
+        self.time = findTime(self.yInitialVelovity!, xInitialVelocity: nil, yDisplacement: 0, xDisplacement: nil, xAcceleration: nil, yAcceleration: self.yAcceleration)
         
         findDisplacement(self.yInitialVelovity!, yAcceleration: self.yAcceleration!, xInitialVelocity: nil, xAcceleration: nil, time: self.time!)
         
@@ -334,13 +310,13 @@ class Physics {
             
             self.xAcceleration = 0
             
-            self.yAcceleration = -9.8
+            self.yAcceleration = -32
             
         case .InternationalSystem:
             
             self.xAcceleration = 0
             
-            self.yAcceleration = -32
+            self.yAcceleration = -9.8
             
         }
         
@@ -507,7 +483,7 @@ class Physics {
     //MARK: - Function : find time with displacement and acceleration
     func findTimeWithDisplacement(yDisplacement: CGFloat, yAcceleration: CGFloat) -> CGFloat? {
         
-        let time = sqrt( (2 * abs(yDisplacement)) / abs(yAcceleration))
+        let time = sqrt( (2 * yDisplacement) / yAcceleration)
         
         return time
         
@@ -801,6 +777,42 @@ class Physics {
         } else {
             
             self.canBeSolved = false
+            
+        }
+        
+    }
+    
+    
+    //MARK: - Function : Check to see if time exists
+    func checkTime(yInitialVelovity : CGFloat?, xInitialVelocity: CGFloat?, yDisplacement: CGFloat?, xDisplacement: CGFloat?, xAcceleration: CGFloat?, yAcceleration: CGFloat?) -> Bool {
+        
+        if yInitialVelovity != nil && yDisplacement != nil && yAcceleration != nil {
+            
+            if (yInitialVelovity! * yInitialVelovity!) < (4 * (yAcceleration! / 2) * (-yDisplacement!)) {
+                
+                return false
+                
+            } else {
+                
+                return true
+                
+            }
+            
+        } else if xInitialVelocity != nil && xDisplacement != nil && xAcceleration != nil {
+            
+            if (xInitialVelocity! * xInitialVelocity!) < (4 * (xAcceleration! / 2) * (-xDisplacement!)) {
+                
+                return false
+                
+            } else {
+                
+                return true
+                
+            }
+            
+        } else {
+            
+            return false
             
         }
         

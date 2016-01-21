@@ -141,15 +141,7 @@ class Physics {
         
         findVelocity(VectorVelocity, degree: degree)
         
-        if findTime(nil, xInitialVelocity: self.xInitialVelocity!, yDisplacement: nil, xDisplacement: self.xDisplacement!, xAcceleration: self.xAcceleration!, yAcceleration: nil) == nil {
-            
-            self.canBeSolved = false
-            
-        } else {
-            
-            self.canBeSolved = true
-            
-        }
+        self.canBeSolved = checkTime(nil, xInitialVelocity: self.xInitialVelocity, yDisplacement: nil, xDisplacement: self.xDisplacement, xAcceleration: self.xAcceleration, yAcceleration: nil)
         
         self.time = findTime(nil, xInitialVelocity: self.xInitialVelocity!, yDisplacement: nil, xDisplacement: self.xDisplacement!, xAcceleration: self.xAcceleration!, yAcceleration: nil)
         
@@ -216,15 +208,7 @@ class Physics {
         
         findVelocity(VectorVelocity, degree: degree)
         
-        if findTime(self.yInitialVelovity, xInitialVelocity: nil, yDisplacement: self.yDisplacement, xDisplacement: nil, xAcceleration: nil, yAcceleration: self.yAcceleration) == nil {
-            
-            self.canBeSolved = false
-            
-        } else {
-            
-            self.canBeSolved = true
-            
-        }
+        self.canBeSolved = checkTime(self.yInitialVelovity, xInitialVelocity: nil, yDisplacement: self.yDisplacement, xDisplacement: nil, xAcceleration: nil, yAcceleration: self.yAcceleration)
         
         self.time = findTime(self.yInitialVelovity, xInitialVelocity: nil, yDisplacement: self.yDisplacement, xDisplacement: nil, xAcceleration: nil, yAcceleration: self.yAcceleration)
         
@@ -288,17 +272,9 @@ class Physics {
         
         findVelocity(self.VectorVelocity, degree: degree)
         
-        if findTime(self.yInitialVelovity!, xInitialVelocity: nil, yDisplacement: 0, xDisplacement: nil, xAcceleration: nil, yAcceleration: -9.8) == nil {
-            
-            self.canBeSolved = false
-            
-        } else {
-            
-            self.canBeSolved = true
-            
-        }
+        self.canBeSolved = checkTime(self.yInitialVelovity, xInitialVelocity: nil, yDisplacement: 0, xDisplacement: nil, xAcceleration: nil, yAcceleration: self.yAcceleration)
         
-        self.time = findTime(self.yInitialVelovity!, xInitialVelocity: nil, yDisplacement: 0, xDisplacement: nil, xAcceleration: nil, yAcceleration: -9.8)
+        self.time = findTime(self.yInitialVelovity!, xInitialVelocity: nil, yDisplacement: 0, xDisplacement: nil, xAcceleration: nil, yAcceleration: self.yAcceleration)
         
         findDisplacement(self.yInitialVelovity!, yAcceleration: self.yAcceleration!, xInitialVelocity: nil, xAcceleration: nil, time: self.time!)
         
@@ -509,7 +485,7 @@ class Physics {
     //MARK: - Function : find time with displacement and acceleration
     func findTimeWithDisplacement(yDisplacement: CGFloat, yAcceleration: CGFloat) -> CGFloat? {
         
-        let time = sqrt( (2 * abs(yDisplacement)) / abs(yAcceleration))
+        let time = sqrt( (2 * yDisplacement) / yAcceleration)
         
         return time
         
@@ -808,10 +784,46 @@ class Physics {
         
     }
     
+    
+    //MARK: - Function : Check to see if time exists
+    func checkTime(yInitialVelovity : CGFloat?, xInitialVelocity: CGFloat?, yDisplacement: CGFloat?, xDisplacement: CGFloat?, xAcceleration: CGFloat?, yAcceleration: CGFloat?) -> Bool {
+        
+        if yInitialVelovity != nil && yDisplacement != nil && yAcceleration != nil {
+            
+            if (yInitialVelovity! * yInitialVelovity!) < (4 * (yAcceleration! / 2) * (-yDisplacement!)) {
+                
+                return false
+                
+            } else {
+                
+                return true
+                
+            }
+            
+        } else if xInitialVelocity != nil && xDisplacement != nil && xAcceleration != nil {
+            
+            if (xInitialVelocity! * xInitialVelocity!) < (4 * (xAcceleration! / 2) * (-xDisplacement!)) {
+                
+                return false
+                
+            } else {
+                
+                return true
+                
+            }
+            
+        } else {
+            
+            return false
+            
+        }
+        
+    }
+    
 }
 
 
-var myPhysics = Physics(VectorVelocity: 10, degree: 30, yDisplacement: 0, currentUnits: .InternationalSystem)
+var myPhysics = Physics(VectorVelocity: 1000, degree: 30, yDisplacement: 10, currentUnits: .InternationalSystem)
 
 //var myPhysics = Physics(VectorVelocity: 10, degree: 30, yDisplacement: 0, currentUnits: .MetricSystem)
 
