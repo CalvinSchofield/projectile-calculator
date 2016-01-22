@@ -24,6 +24,8 @@ class AngleDisplacementController: UIViewController, UITextFieldDelegate {
     
     @IBOutlet weak var angleTextField: UITextField!
     
+    @IBOutlet weak var yDisplacementTextField: UITextField!
+    
     @IBOutlet weak var initialVelocityLabel: UILabel!
     
     @IBOutlet weak var initialAngleLabel: UILabel!
@@ -50,6 +52,38 @@ class AngleDisplacementController: UIViewController, UITextFieldDelegate {
     
     @IBOutlet weak var totalTimeLabel: UILabel!
     
+    @IBOutlet weak var metricButtonOutlet: UIButton!
+    
+    @IBOutlet weak var internationalButtonOutlet: UIButton!
+    
+    @IBAction func metricButton(sender: AnyObject) {
+        
+        currentUnit = .MetricSystem
+        
+        physics.currentUnits  = currentUnit
+        
+        metricButtonOutlet.backgroundColor = UIColor(red: 233/255, green: 228/255, blue: 183/255, alpha: 1.0)
+        
+        internationalButtonOutlet.backgroundColor = UIColor.clearColor()
+        
+        solve()
+        
+    }
+    
+    @IBAction func internationalButton(sender: AnyObject) {
+        
+        currentUnit = .InternationalSystem
+        
+        physics.currentUnits = currentUnit
+        
+        internationalButtonOutlet.backgroundColor = UIColor(red: 233/255, green: 228/255, blue: 183/255, alpha: 1.0)
+        
+        metricButtonOutlet.backgroundColor = UIColor.clearColor()
+        
+        solve()
+        
+    }
+    
     @IBOutlet weak var timeSliderOutlet: UISlider!
     
     @IBAction func timeSlider(sender: AnyObject) {
@@ -58,40 +92,29 @@ class AngleDisplacementController: UIViewController, UITextFieldDelegate {
             
             if let angle = Double(angleTextField.text!) {
                 
-                if angle == 0.0 {
-                    
-                    //ERROR - not enough info to solve
-                
-                } else {
-                    
-                    physics.recalculateAngleDisplacement(CGFloat(timeSliderOutlet.value), xDisplacement: CGFloat(xDisplacement), degree: CGFloat(angle), currentUnit: currentUnit)
+                if let yDisplacement = Double(yDisplacementTextField.text!) {
                     
                     if physics.canBeSolved {
                     
-                        displayRecalculations()
-                        
-                        timeLabel.text = "Time: " + String(round(100 * timeSliderOutlet.value) / 100) + " s"
+                        physics.recalculateDisplacements(CGFloat(timeSliderOutlet.value), degree: CGFloat(angle), xDisplacement: CGFloat(xDisplacement), yDisplacement: CGFloat(yDisplacement), currentUnit: currentUnit)
                     
+                        displayRecalculations()
+                    
+                        timeLabel.text = "Time: " + String(round(100 * timeSliderOutlet.value) / 100) + " s"
+                        
                     } else {
                         
                         print("Error - or something went wrong")
                         
                     }
-                    
+                 
                 }
                 
             }
-            
+                
         }
-    
+            
     }
-    
-    @IBAction func solveButton(sender: AnyObject) {
-    
-        solve()
-    
-    }
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -117,27 +140,31 @@ class AngleDisplacementController: UIViewController, UITextFieldDelegate {
         
         if let xDisplacement = Double(xDisplacementTextField.text!) {
             
-            if let angle = Double(angleTextField.text!) {
-                
-                if angle != 0.0 {
-                
-                    physics = Physics(xDisplacement: CGFloat(xDisplacement), degree: CGFloat(angle), currentUnits: currentUnit)
-                
-                    if physics.canBeSolved {
+            if let yDisplacement = Double(yDisplacementTextField.text!) {
+            
+                if let angle = Double(angleTextField.text!) {
                     
-                        displayData()
+                    if angle != 0.0 {
                     
-                        timeSliderOutlet.value = Float(physics.time!)
+                        physics = Physics(degree: CGFloat(angle), xDisplacement: CGFloat(xDisplacement), yDisplacement: CGFloat(yDisplacement), currentUnits: currentUnit)
+                    
+                        if physics.canBeSolved {
+                        
+                            displayData()
+                        
+                            timeSliderOutlet.value = Float(physics.time!)
+                            
+                        } else {
+                            
+                            self.presentViewController(physics.presentErrorAlert(), animated: true, completion: nil)
+                            
+                        }
                         
                     } else {
                         
-                        print("Error - or something went wrong")
+                        self.presentViewController(physics.presentErrorAlert(), animated: true, completion: nil)
                         
                     }
-                    
-                } else {
-                    
-                    //MARK: - ERROR : There can be no x Displacement if the angle is 0
                     
                 }
                 
@@ -155,11 +182,11 @@ class AngleDisplacementController: UIViewController, UITextFieldDelegate {
             
         case .InternationalSystem:
             
-            displayInternational()
+            displayInternational(true)
             
         case .MetricSystem:
             
-            displayMetric()
+            displayMetric(true)
             
         }
         
@@ -179,14 +206,14 @@ class AngleDisplacementController: UIViewController, UITextFieldDelegate {
             
         case .InternationalSystem:
             
-            displayInternational()
+            displayInternational(false)
             
         case .MetricSystem:
             
-            displayMetric()
+            displayMetric(false)
             
         }
-        
+                
         totalTimeLabel.text = String(round(1000 * physics.time!) / 1000) + " sec"
         
         timeSliderOutlet.maximumValue = abs(Float(physics.time!))
@@ -195,7 +222,7 @@ class AngleDisplacementController: UIViewController, UITextFieldDelegate {
         
     }
     
-    func displayInternational() {
+    func displayInternational(maxHeight : Bool) {
         
         initialVelocityLabel.text = "Initial Velocity: " + String(round(1000 * physics.VectorVelocity) / 1000) + " m/s"
         
@@ -207,7 +234,11 @@ class AngleDisplacementController: UIViewController, UITextFieldDelegate {
         
         timeLabel.text = "Time: " + String(round(1000 * physics.time!) / 1000) + " sec"
         
-        maxHeightLabel.text = "Max Height: " + String(round(1000 * physics.yMaxHeight!) / 1000) + " m  at " + String(round(1000 * physics.maxHeightTime!) / 1000) + " sec"
+        if maxHeight {
+        
+            maxHeightLabel.text = "Max Height: " + String(round(1000 * physics.yMaxHeight!) / 1000) + " m  at " + String(round(1000 * physics.maxHeightTime!) / 1000) + " sec"
+        
+        }
         
         verticalVelocityLabel.text = "Vertical Velocity: " + String(round(1000 * physics.yInitialVelovity!) / 1000) + " m/s"
         
@@ -224,7 +255,7 @@ class AngleDisplacementController: UIViewController, UITextFieldDelegate {
     }
     
     
-    func displayMetric() {
+    func displayMetric(maxHeight : Bool) {
         
         initialVelocityLabel.text = "Initial Velocity: " + String(round(1000 * physics.VectorVelocity) / 1000) + " ft/s"
         
@@ -236,7 +267,11 @@ class AngleDisplacementController: UIViewController, UITextFieldDelegate {
         
         timeLabel.text = "Time: " + String(round(1000 * physics.time!) / 1000) + " sec"
         
-        maxHeightLabel.text = "Max Height: " + String(round(1000 * physics.yMaxHeight!) / 1000) + " ft  at " + String(round(1000 * physics.maxHeightTime!) / 1000) + " sec"
+        if maxHeight {
+        
+            maxHeightLabel.text = "Max Height: " + String(round(1000 * physics.yMaxHeight!) / 1000) + " ft  at " + String(round(1000 * physics.maxHeightTime!) / 1000) + " sec"
+        
+        }
         
         verticalVelocityLabel.text = "Vertical Velocity: " + String(round(1000 * physics.yInitialVelovity!) / 1000) + " ft/s"
         

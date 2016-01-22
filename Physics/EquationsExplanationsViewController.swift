@@ -10,18 +10,34 @@ import UIKit
 
 class EquationsExplanationsViewController: UIViewController {
 
+
+    //Local Variables
     var titleLabelData = ["Displacement", "Final Velocity", "Velocity Squared", "Average Velocity"]
+
+    var horizantalEquationsArray = [UIImage(named: "displacement.png"), UIImage(named: "velocityFinal.png"), UIImage(named: "velocitySquared.png"), UIImage(named: "averageVelocity.png")]
+    
+    var descriptions = ["The relationship between displacement and time when considering initial velocity and acceleration\n\nThis equation will be one of the most important equations of kinematics used to observe the motion of objects. Using time and initial velocity coupled with the acceleration of gravity that acts upon all objects, we can determine the displacement of an object as a result of time. Using simple algebra, we can find any of the other variables using what was given.",
+        "Shows final velocity as a result of initial velocity added to total time multiplied by acceleration",
+        "Demonstrates the relationship between final velocity and initial velocity with regardds to acceleration and displacement",
+        "Average velocity as a result of final velocity plus initial velocity divided by two"]
     
     var index = 0
     
-    @IBOutlet weak var titleLabel: UILabel!
+    
+    //IBOutlets & IBActions
+    @IBOutlet weak var equationImage: UIImageView!
+    
+    @IBOutlet weak var descriptionLabel: UITextView!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+                
+        equationImage.image = horizantalEquationsArray[index]
         
-        titleLabel.text = titleLabelData[index]
+        descriptionLabel.text = descriptions[index]
         
     }
 

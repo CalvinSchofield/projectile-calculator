@@ -54,6 +54,38 @@ class XDisplacementViewController: UIViewController, UITextFieldDelegate {
     
     @IBOutlet weak var timeSliderOutlet: UISlider!
     
+    @IBOutlet weak var metricButtonOutlet: UIButton!
+    
+    @IBOutlet weak var internationalButtonOutlet: UIButton!
+    
+    @IBAction func metricButton(sender: AnyObject) {
+        
+        currentUnit = .MetricSystem
+        
+        physics.currentUnits  = currentUnit
+        
+        metricButtonOutlet.backgroundColor = UIColor(red: 233/255, green: 228/255, blue: 183/255, alpha: 1.0)
+        
+        internationalButtonOutlet.backgroundColor = UIColor.clearColor()
+        
+        solve()
+        
+    }
+    
+    @IBAction func internationalButton(sender: AnyObject) {
+        
+        currentUnit = .InternationalSystem
+        
+        physics.currentUnits = currentUnit
+        
+        internationalButtonOutlet.backgroundColor = UIColor(red: 233/255, green: 228/255, blue: 183/255, alpha: 1.0)
+        
+        metricButtonOutlet.backgroundColor = UIColor.clearColor()
+        
+        solve()
+        
+    }
+    
     @IBAction func timeSlider(sender: AnyObject) {
     
         if let initialVelocity = Double(initialVelocityTextField.text!) {
@@ -72,7 +104,7 @@ class XDisplacementViewController: UIViewController, UITextFieldDelegate {
                     
                     } else {
                         
-                        print("Error - or something went wrong")
+                        self.presentViewController(physics.presentErrorAlert(), animated: true, completion: nil)
                         
                     }
                     
@@ -82,12 +114,6 @@ class XDisplacementViewController: UIViewController, UITextFieldDelegate {
             
         }
     
-    }
-    
-    @IBAction func solveButton(sender: AnyObject) {
-        
-        solve()
-        
     }
     
     
@@ -125,27 +151,11 @@ class XDisplacementViewController: UIViewController, UITextFieldDelegate {
                     
                         if angle == 180 || angle == 270 {
                         
-                            let defaultAlert = UIAlertController(title: "Quick Note", message: "It's impossible to have a Horizantal Displacement if the angle is \(angle) and there is no Vertical Displacement. Your looking for the Displacements tab.", preferredStyle: .Alert)
-                            
-                            let cancelAction = UIAlertAction(title: "Ok", style: .Default) {(action: UIAlertAction) in
-                                
-                            }
-                            
-                            defaultAlert.addAction(cancelAction)
-                            
-                            self.presentViewController(defaultAlert, animated: true, completion: nil)
+                            self.presentViewController(physics.presentErrorAlert(), animated: true, completion: nil)
                         
                         } else {
                             
-                            let defaultAlert = UIAlertController(title: "Quick Note", message: "It's impossible to have a Horizantal Displacement if the angle is \(angle)", preferredStyle: .Alert)
-                            
-                            let cancelAction = UIAlertAction(title: "Ok", style: .Default) {(action: UIAlertAction) in
-                                
-                            }
-                            
-                            defaultAlert.addAction(cancelAction)
-                            
-                            self.presentViewController(defaultAlert, animated: true, completion: nil)
+                            self.presentViewController(physics.presentErrorAlert(), animated: true, completion: nil)
                             
                         }
                     
@@ -161,7 +171,7 @@ class XDisplacementViewController: UIViewController, UITextFieldDelegate {
                         
                         } else {
                             
-                            print("Error - or something went wrong")
+                            self.presentViewController(physics.presentErrorAlert(), animated: true, completion: nil)
                             
                         }
                         
@@ -184,11 +194,11 @@ class XDisplacementViewController: UIViewController, UITextFieldDelegate {
             
         case .InternationalSystem:
             
-            displayInternational()
+            displayInternational(true)
             
         case .MetricSystem:
             
-            displayMetric()
+            displayMetric(true)
             
         }
         
@@ -208,11 +218,11 @@ class XDisplacementViewController: UIViewController, UITextFieldDelegate {
             
         case .InternationalSystem:
             
-            displayInternational()
+            displayInternational(false)
             
         case .MetricSystem:
             
-            displayMetric()
+            displayMetric(false)
             
         }
         
@@ -225,7 +235,7 @@ class XDisplacementViewController: UIViewController, UITextFieldDelegate {
     }
     
     
-    func displayInternational() {
+    func displayInternational(maxHeight : Bool) {
         
         initialVelocityLabel.text = "Initial Velocity: " + String(round(1000 * physics.VectorVelocity) / 1000) + " m/s"
         
@@ -237,7 +247,11 @@ class XDisplacementViewController: UIViewController, UITextFieldDelegate {
         
         timeLabel.text = "Time: " + String(round(1000 * physics.time!) / 1000) + " sec"
         
-        maxHeightLabel.text = "Max Height: " + String(round(1000 * physics.yMaxHeight!) / 1000) + " m  at " + String(round(1000 * physics.maxHeightTime!) / 1000) + " sec"
+        if maxHeight {
+        
+            maxHeightLabel.text = "Max Height: " + String(round(1000 * physics.yMaxHeight!) / 1000) + " m  at " + String(round(1000 * physics.maxHeightTime!) / 1000) + " sec"
+        
+        }
         
         verticalVelocityLabel.text = "Vertical Velocity: " + String(round(1000 * physics.yInitialVelovity!) / 1000) + " m/s"
         
@@ -254,7 +268,7 @@ class XDisplacementViewController: UIViewController, UITextFieldDelegate {
     }
     
     
-    func displayMetric() {
+    func displayMetric(maxHeight : Bool) {
         
         initialVelocityLabel.text = "Initial Velocity: " + String(round(1000 * physics.VectorVelocity) / 1000) + " ft/s"
         
@@ -266,7 +280,11 @@ class XDisplacementViewController: UIViewController, UITextFieldDelegate {
         
         timeLabel.text = "Time: " + String(round(1000 * physics.time!) / 1000) + " sec"
         
-        maxHeightLabel.text = "Max Height: " + String(round(1000 * physics.yMaxHeight!) / 1000) + " ft at " + String(round(1000 * physics.maxHeightTime!) / 1000) + " sec"
+        if maxHeight {
+        
+            maxHeightLabel.text = "Max Height: " + String(round(1000 * physics.yMaxHeight!) / 1000) + " ft at " + String(round(1000 * physics.maxHeightTime!) / 1000) + " sec"
+        
+        }
         
         verticalVelocityLabel.text = "Vertical Velocity: " + String(round(1000 * physics.yInitialVelovity!) / 1000) + " ft/s"
         
@@ -310,15 +328,6 @@ class XDisplacementViewController: UIViewController, UITextFieldDelegate {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
         
-        if segue.identifier == "xDisplacementHow" {
-            
-            let howVC = segue.destinationViewController as! howDisplayController
-            
-            howVC.physics = physics
-            
-            howVC.identity = 1
-            
-        }
         
     }
 

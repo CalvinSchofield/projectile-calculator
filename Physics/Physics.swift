@@ -173,6 +173,10 @@ class Physics {
         
         findFinalVectorVelocity(self.yFinalVelocity!, xFinalVelocity: self.xFinalVelocity!, yDisplacement: self.yDisplacement!, maxHeight: self.yMaxHeight!)
         
+        self.firstTime = findFirstTime(self.yInitialVelovity, xInitialVelocity: nil, yDisplacement: self.yDisplacement, xDisplacement: nil, xAcceleration: nil, yAcceleration: self.yAcceleration)
+        
+        self.secondTime = findSecondTime(self.yInitialVelovity, xInitialVelocity: nil, yDisplacement: self.yDisplacement, xDisplacement: nil, xAcceleration: nil, yAcceleration: self.yAcceleration)
+        
     }
     
     
@@ -210,10 +214,6 @@ class Physics {
         
         self.time = findTime(self.yInitialVelovity, xInitialVelocity: nil, yDisplacement: self.yDisplacement, xDisplacement: nil, xAcceleration: nil, yAcceleration: self.yAcceleration)
         
-        self.firstTime = findFirstTime(self.yInitialVelovity, xInitialVelocity: nil, yDisplacement: self.yDisplacement, xDisplacement: nil, xAcceleration: nil, yAcceleration: self.yAcceleration)
-        
-        self.secondTime = findSecondTime(self.yInitialVelovity, xInitialVelocity: nil, yDisplacement: self.yDisplacement, xDisplacement: nil, xAcceleration: nil, yAcceleration: self.yAcceleration)
-        
         if self.yDisplacement == 0 {
             
             self.maxHeightTime = self.time! / 2
@@ -235,6 +235,10 @@ class Physics {
         findFinalVelocity(self.yInitialVelovity!, yAcceleration: self.yAcceleration!, xInitialVelocity: self.xInitialVelocity!, xAcceleration: self.xAcceleration!, time: self.time!)
         
         findFinalVectorVelocity(self.yFinalVelocity!, xFinalVelocity: self.xFinalVelocity!, yDisplacement: self.yDisplacement!, maxHeight: self.yMaxHeight!)
+        
+        self.firstTime = findFirstTime(self.yInitialVelovity, xInitialVelocity: nil, yDisplacement: self.yDisplacement, xDisplacement: nil, xAcceleration: nil, yAcceleration: self.yAcceleration)
+        
+        self.secondTime = findSecondTime(self.yInitialVelovity, xInitialVelocity: nil, yDisplacement: self.yDisplacement, xDisplacement: nil, xAcceleration: nil, yAcceleration: self.yAcceleration)
         
     }
     
@@ -274,6 +278,10 @@ class Physics {
         
         self.time = findTime(self.yInitialVelovity!, xInitialVelocity: nil, yDisplacement: 0, xDisplacement: nil, xAcceleration: nil, yAcceleration: self.yAcceleration)
         
+        self.firstTime = findFirstTime(self.yInitialVelovity, xInitialVelocity: nil, yDisplacement: self.yDisplacement, xDisplacement: nil, xAcceleration: nil, yAcceleration: self.yAcceleration)
+        
+        self.secondTime = findSecondTime(self.yInitialVelovity, xInitialVelocity: nil, yDisplacement: self.yDisplacement, xDisplacement: nil, xAcceleration: nil, yAcceleration: self.yAcceleration)
+        
         findDisplacement(self.yInitialVelovity!, yAcceleration: self.yAcceleration!, xInitialVelocity: nil, xAcceleration: nil, time: self.time!)
         
         if self.yDisplacement == 0 {
@@ -297,6 +305,8 @@ class Physics {
         findFinalVectorVelocity(self.yFinalVelocity!, xFinalVelocity: self.xFinalVelocity!, yDisplacement: self.yDisplacement!, maxHeight: self.yMaxHeight!)
         
     }
+    
+    
     
     
     //MARK: - initializer : degree, xDisplacement, yDisplacement
@@ -327,49 +337,54 @@ class Physics {
         self.yDisplacement = yDisplacement
         
         
-        if findTimeWithDisplacement(self.yDisplacement!, yAcceleration: self.yAcceleration!) == nil {
-            
-            self.canBeSolved = false
-            
-        } else {
-            
-            self.canBeSolved = true
-            
-        }
+        //Equation derived from Displacement = Vo * t - 4.9 t^2
+        self.VectorVelocity = findVectorVelocity(self.xDisplacement, yDisplacement: self.yDisplacement, xAcceleration: self.xAcceleration, yAcceleration: self.yAcceleration, degree: self.degrees.toRad)
         
-        self.time = findTimeWithDisplacement(self.yDisplacement!, yAcceleration: self.yAcceleration!)
+        findVelocity(self.VectorVelocity, degree: degree)
         
-        if self.degrees == 0 {
+        self.canBeSolved = checkTime(self.yInitialVelovity, xInitialVelocity: nil, yDisplacement: self.yDisplacement, xDisplacement: nil, xAcceleration: nil, yAcceleration: self.yAcceleration)
+        
+        self.time = findTime(self.yInitialVelovity!, xInitialVelocity: nil, yDisplacement: self.yDisplacement, xDisplacement: nil, xAcceleration: nil, yAcceleration: self.yAcceleration)
+        
+        self.firstTime = findFirstTime(self.yInitialVelovity, xInitialVelocity: nil, yDisplacement: self.yDisplacement, xDisplacement: nil, xAcceleration: nil, yAcceleration: self.yAcceleration)
+        
+        self.secondTime = findSecondTime(self.yInitialVelovity, xInitialVelocity: nil, yDisplacement: self.yDisplacement, xDisplacement: nil, xAcceleration: nil, yAcceleration: self.yAcceleration)
+        
+        if self.yDisplacement == 0 {
             
-            self.yInitialVelovity = 0
-            
-            self.xInitialVelocity = self.xDisplacement! / self.time!
-            
-            self.VectorVelocity = self.xInitialVelocity!
-            
-            findFinalVelocity(self.yInitialVelovity!, yAcceleration: self.yAcceleration!, xInitialVelocity: self.xInitialVelocity!, xAcceleration: self.xAcceleration!, time: self.time!)
+            self.maxHeightTime = self.time! / 2
             
             findMaxHeight(self.yInitialVelovity!, time: self.time!, yAcceleration: self.yAcceleration!, yDisplacement: self.yDisplacement!)
             
-            if self.yMaxHeight! == self.yDisplacement! {
-                
-                self.maxHeightTime = 0
-                
-            } else {
-                
-                self.maxHeightTime = findTime(self.yInitialVelovity!, xInitialVelocity: self.xInitialVelocity!, yDisplacement: 0, xDisplacement: self.xDisplacement!, xAcceleration: self.xAcceleration!, yAcceleration: self.yAcceleration!)
-                
-            }
-            
-            findXMaxHeight()
-            
-            findFinalVectorVelocity(self.yFinalVelocity!, xFinalVelocity: self.xFinalVelocity!, yDisplacement: self.yDisplacement!, maxHeight: self.yMaxHeight!)
-            
         } else {
             
-            canBeSolved = false
+            self.maxHeightTime = findTime(self.yInitialVelovity!, xInitialVelocity: nil, yDisplacement: 0, xDisplacement: nil, xAcceleration: nil, yAcceleration: self.yAcceleration!)
+            
+            findMaxHeight(self.yInitialVelovity!, time: self.maxHeightTime!, yAcceleration: self.yAcceleration!, yDisplacement: self.yDisplacement!)
             
         }
+        
+        findXMaxHeight()
+        
+        findFinalVelocity(self.yInitialVelovity!, yAcceleration: self.yAcceleration!, xInitialVelocity: self.xInitialVelocity!, xAcceleration: self.xAcceleration!, time: self.time!)
+        
+        findFinalVectorVelocity(self.yFinalVelocity!, xFinalVelocity: self.xFinalVelocity!, yDisplacement: self.yDisplacement!, maxHeight: self.yMaxHeight!)
+        
+    }
+    
+    
+    //MARK: - Function : if neccessary, find initial velocity
+    func findVectorVelocity(xDisplacement : CGFloat?, yDisplacement : CGFloat?, xAcceleration : CGFloat?, yAcceleration : CGFloat?, degree : CGFloat) -> CGFloat {
+        
+        let t1 = (xAcceleration! * yDisplacement! - yAcceleration! * xDisplacement!)
+        
+        let t2 = ( xAcceleration! * sin(degree) - yAcceleration! * cos(degree) )
+        
+        let t3 = ( xDisplacement! * sin(degree) - yDisplacement! * cos(degree) )
+        
+        let fin = ( (t1) * sqrt( (2) / (t2 * t3) ) ) / 2
+        
+        return fin
         
     }
     
@@ -719,102 +734,153 @@ class Physics {
         
         self.currentUnits = currentUnit
         
-        self.degrees = degree
-        
         switch currentUnits {
             
         case .MetricSystem:
             
             self.xAcceleration = 0
             
-            self.yAcceleration = -9.8
+            self.yAcceleration = -32
             
         case .InternationalSystem:
             
             self.xAcceleration = 0
             
-            self.yAcceleration = -32
+            self.yAcceleration = -9.8
             
         }
         
+        self.degrees = degree
         
-        if time > 0 {
+        self.xDisplacement = xDisplacement
+        
+        self.yDisplacement = yDisplacement
+        
+        
+        //Equation derived from Displacement = Vo * t - 4.9 t^2
+        self.VectorVelocity = findVectorVelocity(self.xDisplacement, yDisplacement: self.yDisplacement, xAcceleration: self.xAcceleration, yAcceleration: self.yAcceleration, degree: self.degrees.toRad)
+        
+        findVelocity(self.VectorVelocity, degree: degree)
+        
+        self.canBeSolved = checkTime(self.yInitialVelovity, xInitialVelocity: nil, yDisplacement: self.yDisplacement, xDisplacement: nil, xAcceleration: nil, yAcceleration: self.yAcceleration)
+        
+        self.firstTime = findFirstTime(self.yInitialVelovity, xInitialVelocity: nil, yDisplacement: self.yDisplacement, xDisplacement: nil, xAcceleration: nil, yAcceleration: self.yAcceleration)
+        
+        self.secondTime = findSecondTime(self.yInitialVelovity, xInitialVelocity: nil, yDisplacement: self.yDisplacement, xDisplacement: nil, xAcceleration: nil, yAcceleration: self.yAcceleration)
+        
+        if self.yDisplacement == 0 {
             
-            if self.degrees == 0 {
-                
-                self.yInitialVelovity = 0
-                
-                self.xInitialVelocity = self.xDisplacement! / time
-                
-                self.VectorVelocity = self.xInitialVelocity!
-                
-                findFinalVelocity(self.yInitialVelovity!, yAcceleration: self.yAcceleration!, xInitialVelocity: self.xInitialVelocity!, xAcceleration: self.xAcceleration!, time: time)
-                
-                findMaxHeight(self.yInitialVelovity!, time: time, yAcceleration: self.yAcceleration!, yDisplacement: self.yDisplacement!)
-                
-                if self.yMaxHeight! == self.yDisplacement! {
-                    
-                    self.maxHeightTime = 0
-                    
-                } else {
-                    
-                    self.maxHeightTime = findTime(self.yInitialVelovity!, xInitialVelocity: self.xInitialVelocity!, yDisplacement: 0, xDisplacement: self.xDisplacement!, xAcceleration: self.xAcceleration!, yAcceleration: self.yAcceleration!)
-                    
-                }
-                
-                findFinalVectorVelocity(self.yFinalVelocity!, xFinalVelocity: self.xFinalVelocity!, yDisplacement: self.yDisplacement!, maxHeight: self.yMaxHeight!)
-                
-                findDisplacement(self.yInitialVelovity!, yAcceleration: self.yAcceleration!, xInitialVelocity: nil, xAcceleration: nil, time: time)
-                
-                findDisplacement(nil, yAcceleration: nil, xInitialVelocity: self.xInitialVelocity!, xAcceleration: self.xAcceleration!, time: time)
-                
-            } else {
-                
-                self.canBeSolved = false
-                
-            }
+            self.maxHeightTime = time / 2
+            
+            findMaxHeight(self.yInitialVelovity!, time: time, yAcceleration: self.yAcceleration!, yDisplacement: self.yDisplacement!)
             
         } else {
             
-            self.canBeSolved = false
+            self.maxHeightTime = findTime(self.yInitialVelovity!, xInitialVelocity: nil, yDisplacement: 0, xDisplacement: nil, xAcceleration: nil, yAcceleration: self.yAcceleration!)
+            
+            findMaxHeight(self.yInitialVelovity!, time: self.maxHeightTime!, yAcceleration: self.yAcceleration!, yDisplacement: self.yDisplacement!)
             
         }
         
+        findXMaxHeight()
+        
+        findFinalVelocity(self.yInitialVelovity!, yAcceleration: self.yAcceleration!, xInitialVelocity: self.xInitialVelocity!, xAcceleration: self.xAcceleration!, time: time)
+        
+        findFinalVectorVelocity(self.yFinalVelocity!, xFinalVelocity: self.xFinalVelocity!, yDisplacement: self.yDisplacement!, maxHeight: self.yMaxHeight!)
+        
+        findDisplacement(self.yInitialVelovity!, yAcceleration: self.yAcceleration!, xInitialVelocity: nil, xAcceleration: nil, time: time)
+        
+        findDisplacement(nil, yAcceleration: nil, xInitialVelocity: self.xInitialVelocity!, xAcceleration: self.xAcceleration!, time: time)
     }
     
     
     //MARK: - Function : Check to see if time exists
     func checkTime(yInitialVelovity : CGFloat?, xInitialVelocity: CGFloat?, yDisplacement: CGFloat?, xDisplacement: CGFloat?, xAcceleration: CGFloat?, yAcceleration: CGFloat?) -> Bool {
         
-        if yInitialVelovity != nil && yDisplacement != nil && yAcceleration != nil {
+        switch self.currentInstance {
             
-            if (yInitialVelovity! * yInitialVelovity!) < (4 * (yAcceleration! / 2) * (-yDisplacement!)) {
+        case .FirstInstance:
+            
+            if yInitialVelovity != nil && yDisplacement != nil && yAcceleration != nil && self.VectorVelocity == 0 {
                 
-                return false
+                if (yInitialVelovity! * yInitialVelovity!) < (4 * (yAcceleration! / 2) * (-yDisplacement!)) {
+                    
+                    return false
+                    
+                } else {
+                    
+                    return true
+                    
+                }
+                
+            } else if xInitialVelocity != nil && xDisplacement != nil && xAcceleration != nil && self.VectorVelocity == 0 {
+                
+                if (xInitialVelocity! * xInitialVelocity!) < (4 * (xAcceleration! / 2) * (-xDisplacement!)) {
+                    
+                    return false
+                    
+                } else {
+                    
+                    return true
+                    
+                }
                 
             } else {
                 
-                return true
+                return false
                 
             }
             
-        } else if xInitialVelocity != nil && xDisplacement != nil && xAcceleration != nil {
+        case .SecondInstance:
             
-            if (xInitialVelocity! * xInitialVelocity!) < (4 * (xAcceleration! / 2) * (-xDisplacement!)) {
+            if yInitialVelovity != nil && yDisplacement != nil && yAcceleration != nil && self.VectorVelocity == 0 {
                 
-                return false
+                if (yInitialVelovity! * yInitialVelovity!) < (4 * (yAcceleration! / 2) * (-yDisplacement!)) {
+                    
+                    return false
+                    
+                } else {
+                    
+                    return true
+                    
+                }
+                
+            } else if xInitialVelocity != nil && xDisplacement != nil && xAcceleration != nil && self.VectorVelocity == 0 {
+                
+                if (xInitialVelocity! * xInitialVelocity!) < (4 * (xAcceleration! / 2) * (-xDisplacement!)) {
+                    
+                    return false
+                    
+                } else {
+                    
+                    return true
+                    
+                }
                 
             } else {
                 
-                return true
+                return false
                 
             }
-            
-        } else {
-            
-            return false
             
         }
+        
+    }
+    
+    
+    //MARK: - Function : Error alert with brief description - very basic
+    func presentErrorAlert() -> UIAlertController {
+        
+        let errorAlert = UIAlertController(title: "Logical Error", message: "The values that you have entered cannot physically happen.", preferredStyle: .Alert)
+        
+        let okAction = UIAlertAction(title: "OK", style: .Default) { (action) -> Void in
+            
+            
+        }
+        
+        errorAlert.addAction(okAction)
+        
+        return errorAlert
         
     }
     

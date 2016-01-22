@@ -60,9 +60,11 @@ class YDisplacementViewController: UIViewController, UITextFieldDelegate {
         
         physics.currentUnits  = currentUnit
         
-        metricButtonOutlet.backgroundColor = UIColor(red: 255/255, green: 150/255, blue: 150/255, alpha: 1.0)
+        metricButtonOutlet.backgroundColor = UIColor(red: 233/255, green: 228/255, blue: 183/255, alpha: 1.0)
         
-        internationalButtonOutlet.backgroundColor = UIColor(red: 150/255, green: 150/255, blue: 255/255, alpha: 1.0)
+        internationalButtonOutlet.backgroundColor = UIColor.clearColor()
+        
+        solve()
         
     }
     
@@ -72,9 +74,11 @@ class YDisplacementViewController: UIViewController, UITextFieldDelegate {
         
         physics.currentUnits = currentUnit
         
-        internationalButtonOutlet.backgroundColor = UIColor(red: 255/255, green: 150/255, blue: 150/255, alpha: 1.0)
+        internationalButtonOutlet.backgroundColor = UIColor(red: 233/255, green: 228/255, blue: 183/255, alpha: 1.0)
         
-        metricButtonOutlet.backgroundColor = UIColor(red: 150/255, green: 150/255, blue: 255/255, alpha: 1.0)
+        metricButtonOutlet.backgroundColor = UIColor.clearColor()
+        
+        solve()
         
     }
     
@@ -111,13 +115,6 @@ class YDisplacementViewController: UIViewController, UITextFieldDelegate {
         }
         
     }
-    
-    @IBAction func solveButton(sender: AnyObject) {
-    
-        solve()
-        
-    }
-    
     
     
     override func viewDidLoad() {
@@ -158,7 +155,7 @@ class YDisplacementViewController: UIViewController, UITextFieldDelegate {
                         
                     } else {
                         
-                        print("Error - not possible, or something is wrong")
+                        self.presentViewController(physics.presentErrorAlert(), animated: true, completion: nil)
                         
                     }
     
@@ -174,18 +171,16 @@ class YDisplacementViewController: UIViewController, UITextFieldDelegate {
     
     //MARK: = Function : function to display data
     func displayData() {
-        
-        print(currentUnit)
-        
+                
         switch physics.currentUnits {
             
         case .InternationalSystem:
             
-            displayInternational()
+            displayInternational(true)
             
         case .MetricSystem:
             
-            displayMetric()
+            displayMetric(true)
             
         }
         
@@ -205,11 +200,11 @@ class YDisplacementViewController: UIViewController, UITextFieldDelegate {
             
             case .InternationalSystem:
             
-                displayInternational()
+                displayInternational(false)
             
             case .MetricSystem:
             
-                displayMetric()
+                displayMetric(false)
             
         }
 
@@ -222,7 +217,7 @@ class YDisplacementViewController: UIViewController, UITextFieldDelegate {
     }
     
     
-    func displayInternational() {
+    func displayInternational(maxHeight : Bool) {
         
         initialVelocityLabel.text = "Initial Velocity: " + String(round(1000 * physics.VectorVelocity) / 1000) + " m/s"
         
@@ -234,8 +229,12 @@ class YDisplacementViewController: UIViewController, UITextFieldDelegate {
         
         timeLabel.text = "Time: " + String(round(1000 * physics.time!) / 1000) + " sec"
         
-        maxHeightLabel.text = "Max Height: " + String(round(1000 * physics.yMaxHeight!) / 1000) + " m  at " + String(round(1000 * physics.maxHeightTime!) / 1000) + " sec"
+        if maxHeight {
         
+            maxHeightLabel.text = "Max Height: " + String(round(1000 * physics.yMaxHeight!) / 1000) + " m  at " + String(round(1000 * physics.maxHeightTime!) / 1000) + " sec"
+        
+        }
+    
         verticalVelocityLabel.text = "Vertical Velocity: " + String(round(1000 * physics.yInitialVelovity!) / 1000) + " m/s"
         
         verticalDisplacementLable.text = "Vertical Displacement: " + String(round(1000 * physics.yDisplacement!) / 1000) + " m"
@@ -251,7 +250,7 @@ class YDisplacementViewController: UIViewController, UITextFieldDelegate {
     }
     
     
-    func displayMetric() {
+    func displayMetric(maxHeight : Bool) {
         
         initialVelocityLabel.text = "Initial Velocity: " + String(round(1000 * physics.VectorVelocity) / 1000) + " ft/s"
         
@@ -263,7 +262,11 @@ class YDisplacementViewController: UIViewController, UITextFieldDelegate {
         
         timeLabel.text = "Time: " + String(round(1000 * physics.time!) / 1000) + " sec"
         
-        maxHeightLabel.text = "Max Height: " + String(round(1000 * physics.yMaxHeight!) / 1000) + " ft  at " + String(round(1000 * physics.maxHeightTime!) / 1000) + " sec"
+        if maxHeight {
+            
+            maxHeightLabel.text = "Max Height: " + String(round(1000 * physics.yMaxHeight!) / 1000) + " ft  at " + String(round(1000 * physics.maxHeightTime!) / 1000) + " sec"
+            
+        }
         
         verticalVelocityLabel.text = "Vertical Velocity: " + String(round(1000 * physics.yInitialVelovity!) / 1000) + " ft/s"
         
@@ -300,15 +303,6 @@ class YDisplacementViewController: UIViewController, UITextFieldDelegate {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
         
-        if segue.identifier == "yDisplacementHow" {
-            
-            let howVC = segue.destinationViewController as! howDisplayController
-            
-            howVC.physics = physics
-            
-            howVC.identity = 0
-            
-        }
         
     }
 

@@ -33,8 +33,6 @@ class EquationsViewController: UITableViewController {
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> CustomTableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as! CustomTableViewCell
         
-        cell.titleLabel.text = titleLabelData[indexPath.row]
-        
         cell.verticalEquation.image = cell.horizantalEquationsArray[indexPath.row]
         
         cell.descriptionLabel.text = cell.descriptions[indexPath.row]

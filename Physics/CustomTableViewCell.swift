@@ -12,9 +12,7 @@ class CustomTableViewCell: UITableViewCell {
 
     //MARK: - IBActions / IBOutlets
     @IBOutlet weak var verticalEquation: UIImageView!
-    
-    @IBOutlet weak var titleLabel: UILabel!
-    
+        
     @IBOutlet weak var descriptionLabel: UILabel!
     
     
