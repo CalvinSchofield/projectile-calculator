@@ -122,13 +122,17 @@ class XDisplacementViewController: UIViewController, UITextFieldDelegate {
 
         // Do any additional setup after loading the view.
         
-        scrollView.keyboardDismissMode = .Interactive
-        
         self.initialVelocityTextField.delegate = self
+        
+        initialVelocityTextField.addTarget(self, action: "shouldSolve:", forControlEvents: UIControlEvents.EditingChanged)
         
         self.xDisplacementTextField.delegate = self
         
+        xDisplacementTextField.addTarget(self, action: "shouldSolve:", forControlEvents: UIControlEvents.EditingChanged)
+        
         self.angleTextField.delegate = self
+        
+        angleTextField.addTarget(self, action: "shouldSolve:", forControlEvents: UIControlEvents.EditingChanged)
         
     }
 
@@ -161,7 +165,7 @@ class XDisplacementViewController: UIViewController, UITextFieldDelegate {
                     
                     } else {
                         
-                        physics = Physics(VectorVelocity: CGFloat(initialVelocity), degree: CGFloat(angle), xDisplacement: CGFloat(xDisplacement), currentUnits: currentUnit)
+                        physics = Physics(VectorVelocity: CGFloat(initialVelocity), degree: CGFloat(angle), xDisplacement: CGFloat(xDisplacement), currentUnit: currentUnit)
                         
                         if physics.canBeSolved {
                         
@@ -317,6 +321,12 @@ class XDisplacementViewController: UIViewController, UITextFieldDelegate {
         angleTextField.resignFirstResponder()
         
         return true
+        
+    }
+    
+    func shouldSolve(sender : AnyObject) {
+        
+        solve()
         
     }
     

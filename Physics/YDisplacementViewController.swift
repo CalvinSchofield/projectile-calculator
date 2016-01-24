@@ -124,9 +124,15 @@ class YDisplacementViewController: UIViewController, UITextFieldDelegate {
         
         self.initialVelocityTextField.delegate = self
         
+        initialVelocityTextField.addTarget(self, action: "shouldSolve:", forControlEvents: UIControlEvents.EditingChanged)
+        
         self.yDisplacementTextField.delegate = self
         
+        yDisplacementTextField.addTarget(self, action: "shouldSolve:", forControlEvents: UIControlEvents.EditingChanged)
+        
         self.angleTextField.delegate = self
+        
+        angleTextField.addTarget(self, action: "shouldSolve:", forControlEvents: UIControlEvents.EditingChanged)
         
     }
 
@@ -148,7 +154,7 @@ class YDisplacementViewController: UIViewController, UITextFieldDelegate {
                     physics = Physics(VectorVelocity: CGFloat(initialVelocity), degree: CGFloat(angle), yDisplacement: CGFloat(yDisplacement), currentUnits: currentUnit)
                     
                     if physics.canBeSolved {
-                    
+                        
                         displayData()
                     
                         timeSliderOutlet.value = Float(physics.time!)
@@ -159,7 +165,6 @@ class YDisplacementViewController: UIViewController, UITextFieldDelegate {
                         
                     }
     
-                    
                 }
                 
             }
@@ -169,7 +174,7 @@ class YDisplacementViewController: UIViewController, UITextFieldDelegate {
     }
     
     
-    //MARK: = Function : function to display data
+    //MARK: - Function : function to display data
     func displayData() {
                 
         switch physics.currentUnits {
@@ -293,6 +298,12 @@ class YDisplacementViewController: UIViewController, UITextFieldDelegate {
         yDisplacementTextField.resignFirstResponder()
         
         return true
+        
+    }
+    
+    func shouldSolve(sender : AnyObject) {
+        
+        solve()
         
     }
     

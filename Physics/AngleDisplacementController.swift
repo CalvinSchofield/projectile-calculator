@@ -120,12 +120,17 @@ class AngleDisplacementController: UIViewController, UITextFieldDelegate {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        
-        scrollView.keyboardDismissMode = .Interactive
-        
         self.xDisplacementTextField.delegate = self
         
+        xDisplacementTextField.addTarget(self, action: "shouldSolve:", forControlEvents: UIControlEvents.EditingChanged)
+        
+        self.yDisplacementTextField.delegate = self
+        
+        yDisplacementTextField.addTarget(self, action: "shouldSolve:", forControlEvents: UIControlEvents.EditingChanged)
+        
         self.angleTextField.delegate = self
+        
+        angleTextField.addTarget(self, action: "shouldSolve:", forControlEvents: UIControlEvents.EditingChanged)
         
     }
 
@@ -302,6 +307,12 @@ class AngleDisplacementController: UIViewController, UITextFieldDelegate {
         xDisplacementTextField.resignFirstResponder()
         
         return true
+        
+    }
+    
+    func shouldSolve(sender : AnyObject) {
+        
+        solve()
         
     }
     
