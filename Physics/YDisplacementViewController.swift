@@ -14,7 +14,7 @@ class YDisplacementViewController: UIViewController, UITextFieldDelegate {
     //MARK: - Local Variables
     var physics = Physics()
     
-    var currentUnit : Units = .InternationalSystem
+    var currentUnit : Units = .MetersPerSecond
     
     
     //MARK: - IBActions / IBOutlets

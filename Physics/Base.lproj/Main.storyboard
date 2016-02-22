@@ -237,6 +237,20 @@
                                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qqh-5U-XJG">
+                                        <rect key="frame" x="8" y="342" width="168" height="5"/>
+                                        <color key="backgroundColor" red="0.91542376889999999" green="0.89337468949999999" blue="0.71845141859999995" alpha="1" colorSpace="calibratedRGB"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5pm-mO-5Rg">
+                                        <rect key="frame" x="199" y="342" width="168" height="5"/>
+                                        <color key="backgroundColor" red="0.91542376889999999" green="0.89337468949999999" blue="0.71845141859999995" alpha="1" colorSpace="calibratedRGB"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <gestureRecognizers/>
                                 <constraints>
@@ -733,6 +747,20 @@
                                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pbr-et-Aym">
+                                        <rect key="frame" x="8" y="342" width="168" height="5"/>
+                                        <color key="backgroundColor" red="0.91542376889999999" green="0.89337468949999999" blue="0.71845141859999995" alpha="1" colorSpace="calibratedRGB"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RSV-yt-K7V">
+                                        <rect key="frame" x="199" y="342" width="168" height="5"/>
+                                        <color key="backgroundColor" red="0.91542376889999999" green="0.89337468949999999" blue="0.71845141859999995" alpha="1" colorSpace="calibratedRGB"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <gestureRecognizers/>
                                 <constraints>
@@ -1010,7 +1038,7 @@
                                             <constraint firstAttribute="height" constant="80" id="1O3-Xw-UNh"/>
                                             <constraint firstAttribute="width" constant="168" id="BX9-XB-z2H"/>
                                         </constraints>
-                                        <state key="normal" title="International">
+                                        <state key="normal" title="m/s">
                                             <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
@@ -1020,7 +1048,7 @@
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bln-pT-wNd">
                                         <rect key="frame" x="199" y="355" width="168" height="80"/>
-                                        <state key="normal" title="Metric">
+                                        <state key="normal" title="ft/s">
                                             <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
@@ -1071,6 +1099,20 @@
                                         </constraints>
                                         <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
                                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pH0-zg-OpO">
+                                        <rect key="frame" x="199" y="342" width="168" height="5"/>
+                                        <color key="backgroundColor" red="0.91542376889999999" green="0.89337468949999999" blue="0.71845141859999995" alpha="1" colorSpace="calibratedRGB"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mo2-gq-G0F">
+                                        <rect key="frame" x="8" y="342" width="168" height="5"/>
+                                        <color key="backgroundColor" red="0.91542376889999999" green="0.89337468949999999" blue="0.71845141859999995" alpha="1" colorSpace="calibratedRGB"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
@@ -1172,8 +1214,10 @@
                         <outlet property="initialAngleLabel" destination="MM8-xf-JEh" id="9LA-bR-A7b"/>
                         <outlet property="initialVelocityLabel" destination="NjN-jr-Ztf" id="3dF-Mu-tej"/>
                         <outlet property="internationalButtonOutlet" destination="81f-fh-T49" id="U1q-rd-sv8"/>
+                        <outlet property="leftInternationalSystem" destination="Mo2-gq-G0F" id="lUZ-W6-vTN"/>
                         <outlet property="maxHeightLabel" destination="6Px-5i-7HB" id="Nhr-zM-xEs"/>
                         <outlet property="metricButtonOutlet" destination="Bln-pT-wNd" id="8zZ-I4-am2"/>
+                        <outlet property="rightMetricSystem" destination="pH0-zg-OpO" id="cii-JR-3cv"/>
                         <outlet property="scrollView" destination="Iwa-8W-a8Y" id="7d8-br-q2F"/>
                         <outlet property="timeLabel" destination="fTV-pg-byh" id="yi8-y8-WH4"/>
                         <outlet property="timeSliderOutlet" destination="amm-yB-vbg" id="mgY-o8-Fb4"/>

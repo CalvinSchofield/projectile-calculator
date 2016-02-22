@@ -10,8 +10,12 @@ import Foundation
 
 enum Units {
     
-    case MetricSystem
+    case MetersPerSecond
     
-    case InternationalSystem
+    case KilometersPerHour
+    
+    case MilesPerHour
+    
+    case FeetPerSecond
     
 }

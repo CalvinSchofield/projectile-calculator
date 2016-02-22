@@ -16,9 +16,13 @@ extension CGFloat {
 
 enum Units {
     
-    case InternationalSystem
+    case MetersPerSecond
     
-    case MetricSystem
+    case KilometersPerHour
+    
+    case MilesPerHour
+    
+    case FeetPerSecond
     
 }
 
@@ -83,7 +87,7 @@ class Physics {
     
     
     // Units of Measurement
-    var currentUnits : Units = .MetricSystem
+    var currentUnits : Units = .MetersPerSecond
     
     
     //Can be solved or not
@@ -95,17 +99,29 @@ class Physics {
         
         switch currentUnits {
             
-        case .MetricSystem:
+        case .MetersPerSecond:
             
             self.xAcceleration = 0
             
             self.yAcceleration = -9.8
             
-        case .InternationalSystem:
+        case .FeetPerSecond:
             
             self.xAcceleration = 0
             
             self.yAcceleration = -32
+         
+        case .MilesPerHour:
+            
+            self.xAcceleration = 0
+            
+            self.yAcceleration = -21.922
+         
+        case .KilometersPerHour:
+            
+            self.xAcceleration = 0
+            
+            self.yAcceleration = -35.28
             
         }
         
@@ -119,17 +135,29 @@ class Physics {
         
         switch currentUnits {
             
-        case .MetricSystem:
+        case .MetersPerSecond:
+            
+            self.xAcceleration = 0
+            
+            self.yAcceleration = -9.8
+            
+        case .FeetPerSecond:
             
             self.xAcceleration = 0
             
             self.yAcceleration = -32
             
-        case .InternationalSystem:
+        case .MilesPerHour:
             
             self.xAcceleration = 0
             
-            self.yAcceleration = -9.8
+            self.yAcceleration = -21.922
+            
+        case .KilometersPerHour:
+            
+            self.xAcceleration = 0
+            
+            self.yAcceleration = -35.28
             
         }
         
@@ -182,17 +210,29 @@ class Physics {
         
         switch currentUnits {
             
-        case .MetricSystem:
+        case .MetersPerSecond:
+            
+            self.xAcceleration = 0
+            
+            self.yAcceleration = -9.8
+            
+        case .FeetPerSecond:
             
             self.xAcceleration = 0
             
             self.yAcceleration = -32
             
-        case .InternationalSystem:
+        case .MilesPerHour:
             
             self.xAcceleration = 0
             
-            self.yAcceleration = -9.8
+            self.yAcceleration = -21.922
+            
+        case .KilometersPerHour:
+            
+            self.xAcceleration = 0
+            
+            self.yAcceleration = -35.28
             
         }
         
@@ -253,17 +293,29 @@ class Physics {
         
         switch currentUnits {
             
-        case .MetricSystem:
+        case .MetersPerSecond:
+            
+            self.xAcceleration = 0
+            
+            self.yAcceleration = -9.8
+            
+        case .FeetPerSecond:
             
             self.xAcceleration = 0
             
             self.yAcceleration = -32
             
-        case .InternationalSystem:
+        case .MilesPerHour:
             
             self.xAcceleration = 0
             
-            self.yAcceleration = -9.8
+            self.yAcceleration = -21.922
+            
+        case .KilometersPerHour:
+            
+            self.xAcceleration = 0
+            
+            self.yAcceleration = -35.28
             
         }
         
@@ -275,7 +327,7 @@ class Physics {
         
         
         //Equation derived from Displacement = Vo * t - 4.9 t^2
-        self.VectorVelocity = findVectorVelocity(self.xDisplacement, yDisplacement: self.yDisplacement, xAcceleration: self.xAcceleration, yAcceleration: self.yAcceleration, degree: self.degrees.toRad)
+        self.VectorVelocity = findVectorVelocity(self.xDisplacement, sy: self.yDisplacement, ax: self.xAcceleration, ay: self.yAcceleration, d: self.degrees)
         
         findVelocity(self.VectorVelocity, degree: degree)
         
@@ -311,18 +363,10 @@ class Physics {
     
     
     //MARK: - Function : if neccessary, find initial velocity
-    func findVectorVelocity(xDisplacement : CGFloat?, yDisplacement : CGFloat?, xAcceleration : CGFloat?, yAcceleration : CGFloat?, degree : CGFloat) -> CGFloat {
+    func findVectorVelocity(sx : CGFloat?, sy : CGFloat?, ax : CGFloat?, ay : CGFloat?, d : CGFloat) -> CGFloat {
         
-        let t1 = (xAcceleration! * yDisplacement! - yAcceleration! * xDisplacement!)
-        
-        let t2 = ( xAcceleration! * sin(degree) - yAcceleration! * cos(degree) )
-        
-        let t3 = ( xDisplacement! * sin(degree) - yDisplacement! * cos(degree) )
-        
-        let fin = ( (t1) * sqrt( (2) / (t2 * t3) ) ) / 2
-        
-        return fin
-        
+        return (((ax!*sy!-ay!*sx!)*sqrt((((2)/((ax!*sin(d.toDegrees)-ay!*cos(d.toDegrees))*(sx!*sin(d.toDegrees)-sy!*cos(d.toDegrees)))))))/(2))
+
     }
     
     
@@ -517,17 +561,29 @@ class Physics {
         
         switch currentUnits {
             
-        case .MetricSystem:
+        case .MetersPerSecond:
+            
+            self.xAcceleration = 0
+            
+            self.yAcceleration = -9.8
+            
+        case .FeetPerSecond:
             
             self.xAcceleration = 0
             
             self.yAcceleration = -32
             
-        case .InternationalSystem:
+        case .MilesPerHour:
             
             self.xAcceleration = 0
             
-            self.yAcceleration = -9.8
+            self.yAcceleration = -21.922
+            
+        case .KilometersPerHour:
+            
+            self.xAcceleration = 0
+            
+            self.yAcceleration = -35.28
             
         }
         
@@ -580,17 +636,29 @@ class Physics {
         
         switch currentUnits {
             
-        case .MetricSystem:
+        case .MetersPerSecond:
             
             self.xAcceleration = 0
             
             self.yAcceleration = -9.8
             
-        case .InternationalSystem:
+        case .FeetPerSecond:
             
             self.xAcceleration = 0
             
             self.yAcceleration = -32
+            
+        case .MilesPerHour:
+            
+            self.xAcceleration = 0
+            
+            self.yAcceleration = -21.922
+            
+        case .KilometersPerHour:
+            
+            self.xAcceleration = 0
+            
+            self.yAcceleration = -35.28
             
         }
         
@@ -629,20 +697,31 @@ class Physics {
         
         switch currentUnits {
             
-        case .MetricSystem:
-            
-            self.xAcceleration = 0
-            
-            self.yAcceleration = -32
-            
-        case .InternationalSystem:
+        case .MetersPerSecond:
             
             self.xAcceleration = 0
             
             self.yAcceleration = -9.8
             
+        case .FeetPerSecond:
+            
+            self.xAcceleration = 0
+            
+            self.yAcceleration = -32
+            
+        case .MilesPerHour:
+            
+            self.xAcceleration = 0
+            
+            self.yAcceleration = -21.922
+            
+        case .KilometersPerHour:
+            
+            self.xAcceleration = 0
+            
+            self.yAcceleration = -35.28
+            
         }
-        
         self.degrees = degree
         
         self.xDisplacement = xDisplacement
@@ -651,7 +730,7 @@ class Physics {
         
         
         //Equation derived from Displacement = Vo * t - 4.9 t^2
-        self.VectorVelocity = findVectorVelocity(self.xDisplacement, yDisplacement: self.yDisplacement, xAcceleration: self.xAcceleration, yAcceleration: self.yAcceleration, degree: self.degrees.toRad)
+        self.VectorVelocity = findVectorVelocity(self.xDisplacement, sy: self.yDisplacement, ax: self.xAcceleration, ay: self.yAcceleration, d: self.degrees.toRad)
         
         findVelocity(self.VectorVelocity, degree: degree)
         
@@ -694,7 +773,7 @@ class Physics {
             
         case .FirstInstance:
             
-            if yInitialVelovity != nil && yDisplacement != nil && yAcceleration != nil && self.VectorVelocity != 0 {
+            if yInitialVelovity != nil && yDisplacement != nil && yAcceleration != nil && self.VectorVelocity > 0 {
                 
                 if (yInitialVelovity! * yInitialVelovity!) < (4 * (yAcceleration! / 2) * (-yDisplacement!)) {
                     
@@ -706,7 +785,7 @@ class Physics {
                     
                 }
                 
-            } else if xInitialVelocity != nil && xDisplacement != nil && xAcceleration != nil && self.VectorVelocity != 0 {
+            } else if xInitialVelocity != nil && xDisplacement != nil && xAcceleration != nil && self.VectorVelocity > 0 {
                 
                 if (xInitialVelocity! * xInitialVelocity!) < (4 * (xAcceleration! / 2) * (-xDisplacement!)) {
                     
@@ -726,7 +805,7 @@ class Physics {
             
         case .SecondInstance:
             
-            if yInitialVelovity != nil && yDisplacement != nil && yAcceleration != nil && self.VectorVelocity != 0 {
+            if yInitialVelovity != nil && yDisplacement != nil && yAcceleration != nil && self.VectorVelocity > 0 {
                 
                 if (yInitialVelovity! * yInitialVelovity!) < (4 * (yAcceleration! / 2) * (-yDisplacement!)) {
                     
@@ -738,7 +817,7 @@ class Physics {
                     
                 }
                 
-            } else if xInitialVelocity != nil && xDisplacement != nil && xAcceleration != nil && self.VectorVelocity != 0 {
+            } else if xInitialVelocity != nil && xDisplacement != nil && xAcceleration != nil && self.VectorVelocity > 0 {
                 
                 if (xInitialVelocity! * xInitialVelocity!) < (4 * (xAcceleration! / 2) * (-xDisplacement!)) {
                     
@@ -781,7 +860,7 @@ class Physics {
 
 
 
-var myPhysics = Physics(VectorVelocity: 10, degree: 30, yDisplacement: 0, currentUnits: .InternationalSystem)
+var myPhysics = Physics(degree: 30, xDisplacement: 100, yDisplacement: 50, currentUnits: .MilesPerHour)
 
 myPhysics.VectorVelocity
 
