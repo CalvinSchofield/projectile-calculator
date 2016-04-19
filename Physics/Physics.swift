@@ -580,14 +580,12 @@ class Physics {
             
         }
         
-        self.VectorVelocity = VectorVelocity
-        
-        self.degrees = degree
-        
-        self.yDisplacement = yDisplacement
-        
         
         findVelocity(VectorVelocity, degree: degree)
+        
+        findDisplacement(self.yInitialVelovity!, yAcceleration: self.yAcceleration!, xInitialVelocity: nil, xAcceleration: nil, time: time)
+        
+        findDisplacement(nil, yAcceleration: nil, xInitialVelocity: self.xInitialVelocity!, xAcceleration: self.xAcceleration!, time: time)
         
         self.canBeSolved = checkTime(self.yInitialVelovity, xInitialVelocity: nil, yDisplacement: self.yDisplacement, xDisplacement: nil, xAcceleration: nil, yAcceleration: self.yAcceleration)
         
@@ -831,7 +829,6 @@ class Physics {
         }
         
     }
-    
     
     //MARK: - Function : Error alert with brief description - very basic
     func presentErrorAlert() -> UIAlertController {

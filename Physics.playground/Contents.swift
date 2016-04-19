@@ -1022,6 +1022,10 @@ myPhysics.canBeSolved
 
 
 
+
+
+
+
 ////MARK: - Functions and such to Plot Data
 //var timeArray = [CGFloat]()
 //
