@@ -16,6 +16,8 @@ class AngleDisplacementController: UIViewController, UITextFieldDelegate {
     
     var currentUnit : Units = .MetersPerSecond
     
+    var textFields = [UITextField]()
+    
     
     //MARK: - IBActions / IBOutlets
     @IBOutlet weak var scrollView: UIScrollView!
@@ -54,11 +56,7 @@ class AngleDisplacementController: UIViewController, UITextFieldDelegate {
     
     @IBOutlet weak var meterPerSecond: UIButton!
     
-    @IBOutlet weak var kilometersPerHour: UIButton!
-    
     @IBOutlet weak var feetPerSecond: UIButton!
-    
-    @IBOutlet weak var milesPerHour: UIButton!
     
     @IBAction func metersPerSecond(sender: AnyObject) {
         
@@ -68,29 +66,7 @@ class AngleDisplacementController: UIViewController, UITextFieldDelegate {
         
         meterPerSecond.backgroundColor = UIColor(red: 233/255, green: 228/255, blue: 183/255, alpha: 1.0)
         
-        kilometersPerHour.backgroundColor = UIColor.clearColor()
-        
         feetPerSecond.backgroundColor = UIColor.clearColor()
-        
-        milesPerHour.backgroundColor = UIColor.clearColor()
-        
-        solve()
-        
-    }
-    
-    @IBAction func kilometersPerHour(sender: AnyObject) {
-        
-        currentUnit = .KilometersPerHour
-        
-        physics.currentUnits  = currentUnit
-        
-        kilometersPerHour.backgroundColor = UIColor(red: 233/255, green: 228/255, blue: 183/255, alpha: 1.0)
-        
-        meterPerSecond.backgroundColor = UIColor.clearColor()
-        
-        feetPerSecond.backgroundColor = UIColor.clearColor()
-        
-        milesPerHour.backgroundColor = UIColor.clearColor()
         
         solve()
         
@@ -103,28 +79,6 @@ class AngleDisplacementController: UIViewController, UITextFieldDelegate {
         physics.currentUnits  = currentUnit
         
         feetPerSecond.backgroundColor = UIColor(red: 233/255, green: 228/255, blue: 183/255, alpha: 1.0)
-        
-        kilometersPerHour.backgroundColor = UIColor.clearColor()
-        
-        meterPerSecond.backgroundColor = UIColor.clearColor()
-        
-        milesPerHour.backgroundColor = UIColor.clearColor()
-        
-        solve()
-        
-    }
-    
-    @IBAction func milesPerHour(sender: AnyObject) {
-        
-        currentUnit = .MilesPerHour
-        
-        physics.currentUnits  = currentUnit
-        
-        milesPerHour.backgroundColor = UIColor(red: 233/255, green: 228/255, blue: 183/255, alpha: 1.0)
-        
-        kilometersPerHour.backgroundColor = UIColor.clearColor()
-        
-        feetPerSecond.backgroundColor = UIColor.clearColor()
         
         meterPerSecond.backgroundColor = UIColor.clearColor()
         
@@ -151,6 +105,8 @@ class AngleDisplacementController: UIViewController, UITextFieldDelegate {
                         timeLabel.text = "Time: " + String(round(100 * timeSliderOutlet.value) / 100) + " s"
                         
                     } else {
+                        
+                        clear(true)
                         
                         print("Error - or something went wrong")
                         
@@ -180,6 +136,8 @@ class AngleDisplacementController: UIViewController, UITextFieldDelegate {
         
         angleTextField.addTarget(self, action: #selector(AngleDisplacementController.shouldSolve(_:)), forControlEvents: UIControlEvents.EditingChanged)
         
+        textFields = [xDisplacementTextField, yDisplacementTextField, angleTextField]
+                
     }
 
     override func didReceiveMemoryWarning() {
@@ -208,7 +166,9 @@ class AngleDisplacementController: UIViewController, UITextFieldDelegate {
                         
                     } else {
                         
-//                        self.presentViewController(physics.presentErrorAlert(), animated: true, completion: nil)
+                        self.presentViewController(physics.presentErrorAlert(textFields), animated: true, completion: nil)
+                        
+                        clear(true)
                         
                     }
                     
@@ -239,22 +199,6 @@ class AngleDisplacementController: UIViewController, UITextFieldDelegate {
             displayFeetPerSecond(true)
             
             totalTimeLabel.text = String(round(1000 * physics.time!) / 1000) + " s"
-            
-            break
-            
-        case .MilesPerHour:
-            
-            displayMilesPerHour(true)
-            
-            totalTimeLabel.text = String(round(1000 * physics.time!) / 1000) + " hr"
-            
-            break
-            
-        case .KilometersPerHour:
-            
-            displayKilometersPerHour(true)
-            
-            totalTimeLabel.text = String(round(1000 * physics.time!) / 1000) + "hr"
             
             break
             
@@ -290,22 +234,6 @@ class AngleDisplacementController: UIViewController, UITextFieldDelegate {
             
             break
             
-        case .MilesPerHour:
-            
-            displayMilesPerHour(false)
-            
-            totalTimeLabel.text = String(round(1000 * physics.time!) / 1000) + " hr"
-            
-            break
-            
-        case .KilometersPerHour:
-            
-            displayKilometersPerHour(false)
-            
-            totalTimeLabel.text = String(round(1000 * physics.time!) / 1000) + " hr"
-            
-            break
-            
         }
         
         timeSliderOutlet.maximumValue = Float(physics.time!)
@@ -314,11 +242,39 @@ class AngleDisplacementController: UIViewController, UITextFieldDelegate {
         
     }
     
+    func showInitial() {
+        
+        initialVelocityLabel.text = "Initial Velocity:"
+        
+        initialAngleLabel.text = "Angle of Initial Velocity Vector:"
+        
+        finalVelocityLabel.text = "Final Velocity:"
+        
+        finalVelocityAngleLabel.text = "Angle of Final Velocity Vector:"
+        
+        timeLabel.text = "Time:"
+        
+        maxHeightLabel.text = "Max Height:"
+        
+        verticalVelocityLabel.text = "Vertical Velocity:"
+        
+        verticalDisplacementLabel.text = "Vertical Displacement:"
+        
+        verticalFinalVelocityLabel.text = "Vertical Final Velocity:"
+        
+        horizantalVelocityLabel.text = "Horizantal Velocity:"
+        
+        horizantalDisplacementLabel.text = "Horizantal Displacement:"
+        
+        horizantalFinalVelocityLabel.text = "Horizantal Final Velocity:"
+        
+    }
+    
     func displayFeetPerSecond(maxHeight : Bool) {
         
         initialVelocityLabel.text = "Initial Velocity: " + String(round(1000 * physics.VectorVelocity) / 1000) + " ft/s"
         
-        initialAngleLabel.text = "Angle: " + String(round(1000 * physics.degrees) / 1000) + "º"
+        initialAngleLabel.text = "Angle of Initial Velocity Vector: " + String(round(1000 * physics.degrees) / 1000) + "º"
         
         finalVelocityLabel.text = "Final Velocity: " + String(round(1000 * physics.finalVectorVelocity) / 1000) + " ft/s"
         
@@ -326,7 +282,11 @@ class AngleDisplacementController: UIViewController, UITextFieldDelegate {
         
         timeLabel.text = "Time: " + String(round(1000 * physics.time!) / 1000) + " s"
         
-        maxHeightLabel.text = "Max Height: " + String(round(1000 * physics.yMaxHeight!) / 1000) + " ft  at " + String(round(1000 * physics.maxHeightTime!) / 1000) + " s"
+        if(maxHeight) {
+            
+            maxHeightLabel.text = "Max Height: " + String(round(1000 * physics.yMaxHeight!) / 1000) + " ft  at " + String(round(1000 * physics.maxHeightTime!) / 1000) + " s"
+        
+        }
         
         verticalVelocityLabel.text = "Vertical Velocity: " + String(round(1000 * physics.yInitialVelovity!) / 1000) + " ft/s"
         
@@ -342,40 +302,11 @@ class AngleDisplacementController: UIViewController, UITextFieldDelegate {
         
     }
     
-    func displayMilesPerHour(maxHeight : Bool) {
-        
-        initialVelocityLabel.text = "Initial Velocity: " + String(round(1000 * physics.VectorVelocity) / 1000) + " mi/hr"
-        
-        initialAngleLabel.text = "Angle: " + String(round(1000 * physics.degrees) / 1000) + "º"
-        
-        finalVelocityLabel.text = "Final Velocity: " + String(round(1000 * physics.finalVectorVelocity) / 1000) + " mi/hr"
-        
-        finalVelocityAngleLabel.text = "Angle of Final Velocity Vector: " + String(round(1000 * physics.finalDegrees) / 1000) + "º"
-        
-        timeLabel.text = "Time: " + String(round(1000 * physics.time!) / 1000) + " hr"
-        
-        maxHeightLabel.text = "Max Height: " + String(round(1000 * physics.yMaxHeight!) / 1000) + " mi  at " + String(round(1000 * physics.maxHeightTime!) / 1000) + " hr"
-        
-        verticalVelocityLabel.text = "Vertical Velocity: " + String(round(1000 * physics.yInitialVelovity!) / 1000) + " mi/hr"
-        
-        verticalDisplacementLabel.text = "Vertical Displacement: " + String(round(1000 * physics.yDisplacement!) / 1000) + " mi"
-        
-        verticalFinalVelocityLabel.text = "Vertical Final Velocity: " + String(round(1000 * physics.yFinalVelocity!) / 1000) + " mi/hr"
-        
-        horizantalVelocityLabel.text = "Horizantal Velocity: " + String(round(1000 * physics.xInitialVelocity!) / 1000) + " mi/hr"
-        
-        horizantalDisplacementLabel.text = "Horizantal Displacement: " + String(round(1000 * physics.xDisplacement!) / 1000) + " mi"
-        
-        horizantalFinalVelocityLabel.text = "Horizantal Final Velocity: " + String(round(1000 * physics.xFinalVelocity!) / 1000) + " mi/hr"
-        
-    }
-    
-    
     func displayMetersPerSecond(maxHeight : Bool) {
         
         initialVelocityLabel.text = "Initial Velocity: " + String(round(1000 * physics.VectorVelocity) / 1000) + " m/s"
         
-        initialAngleLabel.text = "Angle: " + String(round(1000 * physics.degrees) / 1000) + "º"
+        initialAngleLabel.text = "Angle of Initial Velocity Vector: " + String(round(1000 * physics.degrees) / 1000) + "º"
         
         finalVelocityLabel.text = "Final Velocity: " + String(round(1000 * physics.finalVectorVelocity) / 1000) + " m/s"
         
@@ -383,8 +314,11 @@ class AngleDisplacementController: UIViewController, UITextFieldDelegate {
         
         timeLabel.text = "Time: " + String(round(1000 * physics.time!) / 1000) + " s"
         
-        maxHeightLabel.text = "Max Height: " + String(round(1000 * physics.yMaxHeight!) / 1000) + " m  at " + String(round(1000 * physics.maxHeightTime!) / 1000) + " s"
+        if(maxHeight) {
+            
+            maxHeightLabel.text = "Max Height: " + String(round(1000 * physics.yMaxHeight!) / 1000) + " m  at " + String(round(1000 * physics.maxHeightTime!) / 1000) + " s"
         
+        }
         
         verticalVelocityLabel.text = "Vertical Velocity: " + String(round(1000 * physics.yInitialVelovity!) / 1000) + " m/s"
         
@@ -397,35 +331,6 @@ class AngleDisplacementController: UIViewController, UITextFieldDelegate {
         horizantalDisplacementLabel.text = "Horizantal Displacement: " + String(round(1000 * physics.xDisplacement!) / 1000) + " m"
         
         horizantalFinalVelocityLabel.text = "Horizantal Final Velocity: " + String(round(1000 * physics.xFinalVelocity!) / 1000) + " m/s"
-        
-    }
-    
-    func displayKilometersPerHour(maxHeight : Bool) {
-        
-        initialVelocityLabel.text = "Initial Velocity: " + String(round(1000 * physics.VectorVelocity) / 1000) + " ki/hr"
-        
-        initialAngleLabel.text = "Angle: " + String(round(1000 * physics.degrees) / 1000) + "º"
-        
-        finalVelocityLabel.text = "Final Velocity: " + String(round(1000 * physics.finalVectorVelocity) / 1000) + " ki/hr"
-        
-        finalVelocityAngleLabel.text = "Angle of Final Velocity Vector: " + String(round(1000 * physics.finalDegrees) / 1000) + "º"
-        
-        timeLabel.text = "Time: " + String(round(1000 * physics.time!) / 1000) + " hr"
-        
-        maxHeightLabel.text = "Max Height: " + String(round(1000 * physics.yMaxHeight!) / 1000) + " ki  at " + String(round(1000 * physics.maxHeightTime!) / 1000) + " hr"
-            
-        
-        verticalVelocityLabel.text = "Vertical Velocity: " + String(round(1000 * physics.yInitialVelovity!) / 1000) + " ki/hr"
-        
-        verticalDisplacementLabel.text = "Vertical Displacement: " + String(round(1000 * physics.yDisplacement!) / 1000) + " ki"
-        
-        verticalFinalVelocityLabel.text = "Vertical Final Velocity: " + String(round(1000 * physics.yFinalVelocity!) / 1000) + " ki/hr"
-        
-        horizantalVelocityLabel.text = "Horizantal Velocity: " + String(round(1000 * physics.xInitialVelocity!) / 1000) + " ki/hr"
-        
-        horizantalDisplacementLabel.text = "Horizantal Displacement: " + String(round(1000 * physics.xDisplacement!) / 1000) + " ki"
-        
-        horizantalFinalVelocityLabel.text = "Horizantal Final Velocity: " + String(round(1000 * physics.xFinalVelocity!) / 1000) + " ki/hr"
         
     }
     
@@ -452,6 +357,28 @@ class AngleDisplacementController: UIViewController, UITextFieldDelegate {
         physics.currentUnits = currentUnit
         
         solve()
+        
+    }
+    
+    func clear(shouldClear : Bool) {
+        
+        if (xDisplacementTextField.text?.isEmpty)! || (yDisplacementTextField.text?.isEmpty)! || (angleTextField.text?.isEmpty)! {
+            
+            showInitial()
+            
+        }
+        
+        if shouldClear {
+            
+            showInitial()
+            
+            xDisplacementTextField.text = nil
+            
+            yDisplacementTextField.text = nil
+            
+            angleTextField.text = nil
+            
+        }
         
     }
     

@@ -20,6 +20,30 @@ extension CGFloat {
 }
 
 
+//MARK: - Extensions : CGFloat (Decimal to Scientific Notation)
+extension CGFloat {
+    
+    struct Number {
+        
+        static var formatter = NSNumberFormatter()
+        
+    }
+    
+    var toScientific: String {
+        
+        Number.formatter.numberStyle = .ScientificStyle
+        
+        Number.formatter.positiveFormat = "0.###E+0"
+        
+        Number.formatter.exponentSymbol = "e"
+        
+        return Number.formatter.stringFromNumber(self) ?? description
+        
+    }
+    
+}
+
+
 class Physics {
     
     
@@ -104,18 +128,6 @@ class Physics {
             
             self.yAcceleration = -32
             
-        case .MilesPerHour:
-            
-            self.xAcceleration = 0
-            
-            self.yAcceleration = -21.922
-            
-        case .KilometersPerHour:
-            
-            self.xAcceleration = 0
-            
-            self.yAcceleration = -35.28
-            
         }
         
     }
@@ -139,18 +151,6 @@ class Physics {
             self.xAcceleration = 0
             
             self.yAcceleration = -32
-            
-        case .MilesPerHour:
-            
-            self.xAcceleration = 0
-            
-            self.yAcceleration = -21.922
-            
-        case .KilometersPerHour:
-            
-            self.xAcceleration = 0
-            
-            self.yAcceleration = -35.28
             
         }
         
@@ -214,18 +214,6 @@ class Physics {
             self.xAcceleration = 0
             
             self.yAcceleration = -32
-            
-        case .MilesPerHour:
-            
-            self.xAcceleration = 0
-            
-            self.yAcceleration = -21.922
-            
-        case .KilometersPerHour:
-            
-            self.xAcceleration = 0
-            
-            self.yAcceleration = -35.28
             
         }
         
@@ -297,18 +285,6 @@ class Physics {
             self.xAcceleration = 0
             
             self.yAcceleration = -32
-            
-        case .MilesPerHour:
-            
-            self.xAcceleration = 0
-            
-            self.yAcceleration = -21.922
-            
-        case .KilometersPerHour:
-            
-            self.xAcceleration = 0
-            
-            self.yAcceleration = -35.28
             
         }
         
@@ -566,18 +542,6 @@ class Physics {
             
             self.yAcceleration = -32
             
-        case .MilesPerHour:
-            
-            self.xAcceleration = 0
-            
-            self.yAcceleration = -21.922
-            
-        case .KilometersPerHour:
-            
-            self.xAcceleration = 0
-            
-            self.yAcceleration = -35.28
-            
         }
         
         
@@ -639,18 +603,6 @@ class Physics {
             
             self.yAcceleration = -32
             
-        case .MilesPerHour:
-            
-            self.xAcceleration = 0
-            
-            self.yAcceleration = -21.922
-            
-        case .KilometersPerHour:
-            
-            self.xAcceleration = 0
-            
-            self.yAcceleration = -35.28
-            
         }
         
         
@@ -699,18 +651,6 @@ class Physics {
             self.xAcceleration = 0
             
             self.yAcceleration = -32
-            
-        case .MilesPerHour:
-            
-            self.xAcceleration = 0
-            
-            self.yAcceleration = -21.922
-            
-        case .KilometersPerHour:
-            
-            self.xAcceleration = 0
-            
-            self.yAcceleration = -35.28
             
         }
         self.degrees = degree
@@ -831,12 +771,17 @@ class Physics {
     }
     
     //MARK: - Function : Error alert with brief description - very basic
-    func presentErrorAlert() -> UIAlertController {
+    func presentErrorAlert(textFields : [UITextField]) -> UIAlertController {
         
         let errorAlert = UIAlertController(title: "Logical Error", message: "The values that you have entered cannot physically happen.", preferredStyle: .Alert)
         
         let okAction = UIAlertAction(title: "OK", style: .Default) { (action) -> Void in
             
+            for t in textFields {
+                
+                t.text = nil
+                
+            }
             
         }
         

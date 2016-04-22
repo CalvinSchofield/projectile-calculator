@@ -4,6 +4,19 @@ import UIKit
 import Foundation
 
 
+enum Units {
+    
+    case MetersPerSecond
+    
+    case KilometersPerHour
+    
+    
+    case MilesPerHour
+    
+    case FeetPerSecond
+    
+}
+
 //MARK: - Extensions : CGFloat (degrees to rad && rad to degrees)
 extension CGFloat {
     
@@ -14,16 +27,27 @@ extension CGFloat {
 }
 
 
-enum Units {
+//MARK: - Extensions : CGFloat (Decimal to Scientific Notation)
+extension CGFloat {
     
-    case MetersPerSecond
+    struct Number {
     
-    case KilometersPerHour
+        static var formatter = NSNumberFormatter()
     
-    case MilesPerHour
+    }
     
-    case FeetPerSecond
+    var toScientific: String {
     
+        Number.formatter.numberStyle = .ScientificStyle
+        
+        Number.formatter.positiveFormat = "0.###E+0"
+        
+        Number.formatter.exponentSymbol = "e"
+        
+        return Number.formatter.stringFromNumber(self) ?? description
+    
+    }
+
 }
 
 
@@ -110,13 +134,13 @@ class Physics {
             self.xAcceleration = 0
             
             self.yAcceleration = -32
-         
+            
         case .MilesPerHour:
             
             self.xAcceleration = 0
             
             self.yAcceleration = -21.922
-         
+            
         case .KilometersPerHour:
             
             self.xAcceleration = 0
@@ -366,7 +390,7 @@ class Physics {
     func findVectorVelocity(sx : CGFloat?, sy : CGFloat?, ax : CGFloat?, ay : CGFloat?, d : CGFloat) -> CGFloat {
         
         return (((ax!*sy!-ay!*sx!)*sqrt((((2)/((ax!*sin(d.toDegrees)-ay!*cos(d.toDegrees))*(sx!*sin(d.toDegrees)-sy!*cos(d.toDegrees)))))))/(2))
-
+        
     }
     
     
@@ -587,14 +611,12 @@ class Physics {
             
         }
         
-        self.VectorVelocity = VectorVelocity
-        
-        self.degrees = degree
-        
-        self.yDisplacement = yDisplacement
-        
         
         findVelocity(VectorVelocity, degree: degree)
+        
+        findDisplacement(self.yInitialVelovity!, yAcceleration: self.yAcceleration!, xInitialVelocity: nil, xAcceleration: nil, time: time)
+        
+        findDisplacement(nil, yAcceleration: nil, xInitialVelocity: self.xInitialVelocity!, xAcceleration: self.xAcceleration!, time: time)
         
         self.canBeSolved = checkTime(self.yInitialVelovity, xInitialVelocity: nil, yDisplacement: self.yDisplacement, xDisplacement: nil, xAcceleration: nil, yAcceleration: self.yAcceleration)
         
@@ -839,7 +861,6 @@ class Physics {
         
     }
     
-    
     //MARK: - Function : Error alert with brief description - very basic
     func presentErrorAlert() -> UIAlertController {
         
@@ -860,7 +881,7 @@ class Physics {
 
 
 
-var myPhysics = Physics(degree: 30, xDisplacement: 100, yDisplacement: 50, currentUnits: .MilesPerHour)
+var myPhysics = Physics(VectorVelocity: 0.000000001, degree: 30, yDisplacement: 0, currentUnits: .MetersPerSecond)
 
 myPhysics.VectorVelocity
 

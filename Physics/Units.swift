@@ -11,11 +11,7 @@ import Foundation
 enum Units {
     
     case MetersPerSecond
-    
-    case KilometersPerHour
-    
-    
-    case MilesPerHour
+        
     
     case FeetPerSecond
     
