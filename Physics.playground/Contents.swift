@@ -4,18 +4,16 @@ import UIKit
 import Foundation
 
 
+
 enum Units {
     
     case MetersPerSecond
     
-    case KilometersPerHour
-    
-    
-    case MilesPerHour
-    
     case FeetPerSecond
     
 }
+
+
 
 //MARK: - Extensions : CGFloat (degrees to rad && rad to degrees)
 extension CGFloat {
@@ -31,13 +29,13 @@ extension CGFloat {
 extension CGFloat {
     
     struct Number {
-    
+        
         static var formatter = NSNumberFormatter()
-    
+        
     }
     
     var toScientific: String {
-    
+        
         Number.formatter.numberStyle = .ScientificStyle
         
         Number.formatter.positiveFormat = "0.###E+0"
@@ -45,9 +43,9 @@ extension CGFloat {
         Number.formatter.exponentSymbol = "e"
         
         return Number.formatter.stringFromNumber(self) ?? description
-    
+        
     }
-
+    
 }
 
 
@@ -135,18 +133,6 @@ class Physics {
             
             self.yAcceleration = -32
             
-        case .MilesPerHour:
-            
-            self.xAcceleration = 0
-            
-            self.yAcceleration = -21.922
-            
-        case .KilometersPerHour:
-            
-            self.xAcceleration = 0
-            
-            self.yAcceleration = -35.28
-            
         }
         
     }
@@ -170,18 +156,6 @@ class Physics {
             self.xAcceleration = 0
             
             self.yAcceleration = -32
-            
-        case .MilesPerHour:
-            
-            self.xAcceleration = 0
-            
-            self.yAcceleration = -21.922
-            
-        case .KilometersPerHour:
-            
-            self.xAcceleration = 0
-            
-            self.yAcceleration = -35.28
             
         }
         
@@ -245,18 +219,6 @@ class Physics {
             self.xAcceleration = 0
             
             self.yAcceleration = -32
-            
-        case .MilesPerHour:
-            
-            self.xAcceleration = 0
-            
-            self.yAcceleration = -21.922
-            
-        case .KilometersPerHour:
-            
-            self.xAcceleration = 0
-            
-            self.yAcceleration = -35.28
             
         }
         
@@ -328,18 +290,6 @@ class Physics {
             self.xAcceleration = 0
             
             self.yAcceleration = -32
-            
-        case .MilesPerHour:
-            
-            self.xAcceleration = 0
-            
-            self.yAcceleration = -21.922
-            
-        case .KilometersPerHour:
-            
-            self.xAcceleration = 0
-            
-            self.yAcceleration = -35.28
             
         }
         
@@ -597,18 +547,6 @@ class Physics {
             
             self.yAcceleration = -32
             
-        case .MilesPerHour:
-            
-            self.xAcceleration = 0
-            
-            self.yAcceleration = -21.922
-            
-        case .KilometersPerHour:
-            
-            self.xAcceleration = 0
-            
-            self.yAcceleration = -35.28
-            
         }
         
         
@@ -670,18 +608,6 @@ class Physics {
             
             self.yAcceleration = -32
             
-        case .MilesPerHour:
-            
-            self.xAcceleration = 0
-            
-            self.yAcceleration = -21.922
-            
-        case .KilometersPerHour:
-            
-            self.xAcceleration = 0
-            
-            self.yAcceleration = -35.28
-            
         }
         
         
@@ -730,18 +656,6 @@ class Physics {
             self.xAcceleration = 0
             
             self.yAcceleration = -32
-            
-        case .MilesPerHour:
-            
-            self.xAcceleration = 0
-            
-            self.yAcceleration = -21.922
-            
-        case .KilometersPerHour:
-            
-            self.xAcceleration = 0
-            
-            self.yAcceleration = -35.28
             
         }
         self.degrees = degree
@@ -862,12 +776,17 @@ class Physics {
     }
     
     //MARK: - Function : Error alert with brief description - very basic
-    func presentErrorAlert() -> UIAlertController {
+    func presentErrorAlert(textFields : [UITextField]) -> UIAlertController {
         
         let errorAlert = UIAlertController(title: "Logical Error", message: "The values that you have entered cannot physically happen.", preferredStyle: .Alert)
         
         let okAction = UIAlertAction(title: "OK", style: .Default) { (action) -> Void in
             
+            for t in textFields {
+                
+                t.text = nil
+                
+            }
             
         }
         
@@ -881,7 +800,7 @@ class Physics {
 
 
 
-var myPhysics = Physics(VectorVelocity: 0.000000001, degree: 30, yDisplacement: 0, currentUnits: .MetersPerSecond)
+var myPhysics = Physics(degree: 25, xDisplacement: 100, yDisplacement: 0, currentUnits: .MetersPerSecond)
 
 myPhysics.VectorVelocity
 

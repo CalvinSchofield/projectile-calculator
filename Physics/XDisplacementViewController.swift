@@ -108,8 +108,6 @@ class XDisplacementViewController: UIViewController, UITextFieldDelegate {
                         
                         self.presentViewController(physics.presentErrorAlert(textFields), animated: true, completion: nil)
                         
-                        clear(true)
-                        
                     }
                     
                 }
@@ -169,8 +167,6 @@ class XDisplacementViewController: UIViewController, UITextFieldDelegate {
                             
                         }
                         
-                        clear(true)
-                    
                     } else {
                         
                         physics = Physics(VectorVelocity: CGFloat(initialVelocity), degree: CGFloat(angle), xDisplacement: CGFloat(xDisplacement), currentUnit: currentUnit)
@@ -184,9 +180,7 @@ class XDisplacementViewController: UIViewController, UITextFieldDelegate {
                         } else {
                             
                             self.presentViewController(physics.presentErrorAlert(textFields), animated: true, completion: nil)
-                            
-                            clear(true)
-                            
+                                                        
                         }
                         
                     }
@@ -262,39 +256,6 @@ class XDisplacementViewController: UIViewController, UITextFieldDelegate {
         
     }
     
-    
-    func displayFeetPerSecond(maxHeight : Bool) {
-        
-        initialVelocityLabel.text = "Initial Velocity: " + String(round(1000 * physics.VectorVelocity) / 1000) + " ft/s"
-        
-        angleLabel.text = "Angle of Initial Velocity Vector: : " + String(round(1000 * physics.degrees) / 1000) + "º"
-        
-        finalVectorVelocityLabel.text = "Final Velocity: " + String(round(1000 * physics.finalVectorVelocity) / 1000) + " ft/s"
-        
-        finalVectorAngle.text = "Angle of Final Velocity Vector: " + String(round(1000 * physics.finalDegrees) / 1000) + "º"
-        
-        timeLabel.text = "Time: " + String(round(1000 * physics.time!) / 1000) + " s"
-        
-        if(maxHeight) {
-            
-            maxHeightLabel.text = "Max Height: " + String(round(1000 * physics.yMaxHeight!) / 1000) + " ft  at " + String(round(1000 * physics.maxHeightTime!) / 1000) + " s"
-        
-        }
-        
-        verticalVelocityLabel.text = "Vertical Velocity: " + String(round(1000 * physics.yInitialVelovity!) / 1000) + " ft/s"
-        
-        verticalDisplacementLable.text = "Vertical Displacement: " + String(round(1000 * physics.yDisplacement!) / 1000) + " ft"
-        
-        verticalFinalVelocityLabel.text = "Vertical Final Velocity: " + String(round(1000 * physics.yFinalVelocity!) / 1000) + " ft/s"
-        
-        horizantalVelocityLabel.text = "Horizantal Velocity: " + String(round(1000 * physics.xInitialVelocity!) / 1000) + " ft/s"
-        
-        horizantalDisplacementLabel.text = "Horizantal Displacement: " + String(round(1000 * physics.xDisplacement!) / 1000) + " ft"
-        
-        horizantalFinalVelocityLabel.text = "Horizantal Final Velocity: " + String(round(1000 * physics.xFinalVelocity!) / 1000) + " ft/s"
-        
-    }
-    
     func showInitial() {
         
         initialVelocityLabel.text = "Initial Velocity:"
@@ -323,11 +284,43 @@ class XDisplacementViewController: UIViewController, UITextFieldDelegate {
         
     }
     
+    func displayFeetPerSecond(maxHeight : Bool) {
+        
+        initialVelocityLabel.text = "Initial Velocity: " + String(round(1000 * physics.VectorVelocity) / 1000) + " ft/s"
+        
+        angleLabel.text = "Angle of Initial Velocity Vector: " + String(round(1000 * physics.degrees) / 1000) + "º"
+        
+        finalVectorVelocityLabel.text = "Final Velocity: " + String(round(1000 * physics.finalVectorVelocity) / 1000) + " ft/s"
+        
+        finalVectorAngle.text = "Angle of Final Velocity Vector: " + String(round(1000 * physics.finalDegrees) / 1000) + "º"
+        
+        timeLabel.text = "Time: " + String(round(1000 * physics.time!) / 1000) + " s"
+        
+        if(maxHeight) {
+            
+            maxHeightLabel.text = "Max Height: " + String(round(1000 * physics.yMaxHeight!) / 1000) + " ft  at " + String(round(1000 * physics.maxHeightTime!) / 1000) + " s"
+        
+        }
+        
+        verticalVelocityLabel.text = "Vertical Velocity: " + String(round(1000 * physics.yInitialVelovity!) / 1000) + " ft/s"
+        
+        verticalDisplacementLable.text = "Vertical Displacement: " + String(round(1000 * physics.yDisplacement!) / 1000) + " ft"
+        
+        verticalFinalVelocityLabel.text = "Vertical Final Velocity: " + String(round(1000 * physics.yFinalVelocity!) / 1000) + " ft/s"
+        
+        horizantalVelocityLabel.text = "Horizantal Velocity: " + String(round(1000 * physics.xInitialVelocity!) / 1000) + " ft/s"
+        
+        horizantalDisplacementLabel.text = "Horizantal Displacement: " + String(round(1000 * physics.xDisplacement!) / 1000) + " ft"
+        
+        horizantalFinalVelocityLabel.text = "Horizantal Final Velocity: " + String(round(1000 * physics.xFinalVelocity!) / 1000) + " ft/s"
+        
+    }
+    
     func displayMetersPerSecond(maxHeight : Bool) {
         
         initialVelocityLabel.text = "Initial Velocity: " + String(round(1000 * physics.VectorVelocity) / 1000) + " m/s"
         
-        angleLabel.text = "Angle of Initial Velocity Vector: : " + String(round(1000 * physics.degrees) / 1000) + "º"
+        angleLabel.text = "Angle of Initial Velocity Vector: " + String(round(1000 * physics.degrees) / 1000) + "º"
         
         finalVectorVelocityLabel.text = "Final Velocity: " + String(round(1000 * physics.finalVectorVelocity) / 1000) + " m/s"
         
@@ -379,27 +372,17 @@ class XDisplacementViewController: UIViewController, UITextFieldDelegate {
         
         physics.currentUnits = currentUnit
         
+        clear()
+        
         solve()
         
     }
     
-    func clear(shouldClear : Bool) {
+    func clear() {
         
         if (xDisplacementTextField.text?.isEmpty)! || (initialVelocityTextField.text?.isEmpty)! || (angleTextField.text?.isEmpty)! {
             
             showInitial()
-            
-        }
-        
-        if shouldClear {
-            
-            showInitial()
-            
-            xDisplacementTextField.text = nil
-            
-            initialVelocityTextField.text = nil
-            
-            angleTextField.text = nil
             
         }
         

@@ -98,17 +98,15 @@ class AngleDisplacementController: UIViewController, UITextFieldDelegate {
                     
                     if physics.canBeSolved {
                     
-                        physics.recalculateDisplacements(CGFloat(timeSliderOutlet.value), degree: CGFloat(angle), xDisplacement: CGFloat(xDisplacement), yDisplacement: CGFloat(yDisplacement), currentUnit: currentUnit)
-                    
+                        physics.recalculateDisplacements(CGFloat(timeSliderOutlet.value), degree: CGFloat(angle), xDisplacement: CGFloat(xDisplacement), yDisplacement: CGFloat(yDisplacement), vectorVelocity: physics.VectorVelocity, currentUnit: currentUnit)
+
                         displayRecalculations()
                     
                         timeLabel.text = "Time: " + String(round(100 * timeSliderOutlet.value) / 100) + " s"
                         
                     } else {
-                        
-                        clear(true)
-                        
-                        print("Error - or something went wrong")
+                                                
+                        self.presentViewController(physics.presentErrorAlert(textFields), animated: true, completion: nil)
                         
                     }
                  
@@ -167,8 +165,6 @@ class AngleDisplacementController: UIViewController, UITextFieldDelegate {
                     } else {
                         
                         self.presentViewController(physics.presentErrorAlert(textFields), animated: true, completion: nil)
-                        
-                        clear(true)
                         
                     }
                     
@@ -356,27 +352,17 @@ class AngleDisplacementController: UIViewController, UITextFieldDelegate {
         
         physics.currentUnits = currentUnit
         
+        clear()
+        
         solve()
         
     }
     
-    func clear(shouldClear : Bool) {
+    func clear() {
         
         if (xDisplacementTextField.text?.isEmpty)! || (yDisplacementTextField.text?.isEmpty)! || (angleTextField.text?.isEmpty)! {
             
             showInitial()
-            
-        }
-        
-        if shouldClear {
-            
-            showInitial()
-            
-            xDisplacementTextField.text = nil
-            
-            yDisplacementTextField.text = nil
-            
-            angleTextField.text = nil
             
         }
         

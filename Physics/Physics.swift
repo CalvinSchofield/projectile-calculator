@@ -634,7 +634,7 @@ class Physics {
     
     
     //MARK: - Function : recalculates displacements
-    func recalculateDisplacements(time: CGFloat, degree: CGFloat, xDisplacement: CGFloat, yDisplacement: CGFloat, currentUnit : Units) {
+    func recalculateDisplacements(time: CGFloat, degree: CGFloat, xDisplacement: CGFloat, yDisplacement: CGFloat, vectorVelocity : CGFloat, currentUnit : Units) {
         
         self.currentUnits = currentUnit
         
@@ -653,15 +653,15 @@ class Physics {
             self.yAcceleration = -32
             
         }
+        
+        self.VectorVelocity = vectorVelocity
+        
         self.degrees = degree
         
         self.xDisplacement = xDisplacement
         
         self.yDisplacement = yDisplacement
         
-        
-        //Equation derived from Displacement = Vo * t - 4.9 t^2
-        self.VectorVelocity = findVectorVelocity(self.xDisplacement, sy: self.yDisplacement, ax: self.xAcceleration, ay: self.yAcceleration, d: self.degrees.toRad)
         
         findVelocity(self.VectorVelocity, degree: degree)
         

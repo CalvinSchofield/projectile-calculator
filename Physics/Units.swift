@@ -11,7 +11,6 @@ import Foundation
 enum Units {
     
     case MetersPerSecond
-        
     
     case FeetPerSecond
     

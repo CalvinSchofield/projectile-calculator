@@ -106,9 +106,7 @@ class YDisplacementViewController: UIViewController, UITextFieldDelegate {
                                                 
                     } else {
                         
-                        clear(true)
-                        
-                        print("Error - or something went wrong")
+                        self.presentViewController(physics.presentErrorAlert(textFields), animated: true, completion: nil)
                         
                     }
                     
@@ -168,8 +166,6 @@ class YDisplacementViewController: UIViewController, UITextFieldDelegate {
                     } else {
                         
                         self.presentViewController(physics.presentErrorAlert(textFields), animated: true, completion: nil)
-                        
-                        clear(true)
                         
                     }
     
@@ -352,27 +348,17 @@ class YDisplacementViewController: UIViewController, UITextFieldDelegate {
         
         physics.currentUnits = currentUnit
         
+        clear()
+        
         solve()
         
     }
     
-    func clear(shouldClear : Bool) {
+    func clear() {
         
         if (initialVelocityTextField.text?.isEmpty)! || (yDisplacementTextField.text?.isEmpty)! || (angleTextField.text?.isEmpty)! {
             
             showInitial()
-            
-        }
-        
-        if shouldClear {
-            
-            showInitial()
-            
-            yDisplacementTextField.text = nil
-            
-            initialVelocityTextField.text = nil
-            
-            angleTextField.text = nil
             
         }
         
