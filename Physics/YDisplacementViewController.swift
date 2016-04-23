@@ -124,6 +124,8 @@ class YDisplacementViewController: UIViewController, UITextFieldDelegate {
 
         // Do any additional setup after loading the view.
         
+        tabBarController!.tabBar.tintColor = UIColor(red: 153/255, green: 153/255, blue: 102/255, alpha: 1.0)
+        
         self.initialVelocityTextField.delegate = self
         
         initialVelocityTextField.addTarget(self, action: #selector(YDisplacementViewController.shouldSolve(_:)), forControlEvents: UIControlEvents.EditingChanged)
