@@ -89,7 +89,7 @@ class YDisplacementViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var timeSliderOutlet: UISlider!
     
     @IBAction func timeSlider(sender: AnyObject) {
-    
+        
         if let initialVelocity = Double(initialVelocityTextField.text!) {
             
             if let angle = Double(angleTextField.text!) {
@@ -150,7 +150,7 @@ class YDisplacementViewController: UIViewController, UITextFieldDelegate {
     
     //MARK: - Function : function to solve everything
     func solve() {
-        
+                
         if let initialVelocity = Double(initialVelocityTextField.text!) {
             
             if let angle = Double(angleTextField.text!) {
@@ -182,18 +182,18 @@ class YDisplacementViewController: UIViewController, UITextFieldDelegate {
     
     //MARK: - Function : function to display data
     func displayData() {
-                
+        
         switch physics.currentUnits {
             
-        case .FeetPerSecond:
+        case .MetersPerSecond:
             
-            displayFeetPerSecond(true)
+            displayMetersPerSecond(true)
             
             totalTimeLabel.text = String(round(1000 * physics.time!) / 1000) + " s"
             
             break
             
-        case .MetersPerSecond:
+        case .FeetPerSecond:
             
             displayFeetPerSecond(true)
             
@@ -214,18 +214,18 @@ class YDisplacementViewController: UIViewController, UITextFieldDelegate {
     func displayRecalculations() {
         
         switch physics.currentUnits {
+           
+        case .MetersPerSecond:
             
-        case .FeetPerSecond:
-            
-            displayFeetPerSecond(false)
+            displayMetersPerSecond(false)
             
             totalTimeLabel.text = String(round(1000 * physics.time!) / 1000) + " s"
             
             break
             
-        case .MetersPerSecond:
+        case .FeetPerSecond:
             
-            displayMetersPerSecond(false)
+            displayFeetPerSecond(false)
             
             totalTimeLabel.text = String(round(1000 * physics.time!) / 1000) + " s"
             

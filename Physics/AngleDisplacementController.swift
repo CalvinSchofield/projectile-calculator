@@ -192,7 +192,7 @@ class AngleDisplacementController: UIViewController, UITextFieldDelegate {
             
         case .MetersPerSecond:
             
-            displayFeetPerSecond(true)
+            displayMetersPerSecond(true)
             
             totalTimeLabel.text = String(round(1000 * physics.time!) / 1000) + " s"
             
